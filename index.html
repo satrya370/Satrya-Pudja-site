@@ -309,10 +309,17 @@
   <section class="section" id="work">
     <div class="container">
       <h2 class="display display-md text-center mb-2">Selected work</h2>
-      <p class="body-lg text-center mb-3">Marketing, SEO, and product work — plus the automation I built to scale it.</p>
+      <p class="body-lg text-center mb-3">Marketing, SEO, and product work — plus the automation and applications I built to scale it.</p>
+
+      <div class="filter-bar">
+        <button class="filter-tag active">All</button>
+        <button class="filter-tag">Digital Marketing</button>
+        <button class="filter-tag">Automation</button>
+        <button class="filter-tag">Web Application</button>
+      </div>
 
       <div class="catalog-grid">
-        <div class="note-card">
+        <div class="note-card" data-niche="Digital Marketing">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-paid">Case study</span>
@@ -327,7 +334,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Digital Marketing">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-paid">Case study</span>
@@ -342,7 +349,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Digital Marketing">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-paid">Case study</span>
@@ -357,7 +364,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Digital Marketing">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-paid">Case study</span>
@@ -372,7 +379,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Automation">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-free">Live demo</span>
@@ -387,7 +394,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Automation">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-paid">Case study</span>
@@ -402,7 +409,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Automation">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-paid">Case study</span>
@@ -417,7 +424,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Automation">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-paid">Case study</span>
@@ -432,7 +439,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Automation">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-free">Live demo</span>
@@ -447,7 +454,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Automation">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-free">Live demo</span>
@@ -462,7 +469,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Web Application">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-tag">Bootcamp final project</span>
@@ -477,7 +484,7 @@
           </div>
         </div>
 
-        <div class="note-card">
+        <div class="note-card" data-niche="Web Application">
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-tag">In progress</span>
@@ -488,6 +495,51 @@
             <div class="note-card-footer">
               <span class="note-card-price">Node.js · RAG</span>
               <a href="academic-review-site/" class="note-card-link">See the project</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="note-card" data-niche="Web Application">
+          <div class="note-card-inner">
+            <div class="note-card-meta">
+              <span class="badge badge-tag">Prototype</span>
+              <span class="badge badge-tag">Field ops</span>
+            </div>
+            <h3 class="note-card-title">TourDriver Manager</h3>
+            <p class="note-card-desc">A mobile-first app for private tour drivers in Bali — trips, fuel, and deposits logged through a WhatsApp-style quick-capture box ("besok 9 pagi ubud sarah 3 orang" becomes a booking), with receipt OCR and a close-trip flow built to take under 15 seconds.</p>
+            <div class="note-card-footer">
+              <span class="note-card-price">Next.js · TypeScript</span>
+              <a href="#contact" class="note-card-link">Ask for a walkthrough</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="note-card" data-niche="Web Application">
+          <div class="note-card-inner">
+            <div class="note-card-meta">
+              <span class="badge badge-tag">Prototype</span>
+              <span class="badge badge-tag">POS &amp; inventory</span>
+            </div>
+            <h3 class="note-card-title">PosLite</h3>
+            <p class="note-card-desc">A lightweight point-of-sale system for small businesses — product and variant management, real-time stock tracking, sales reporting, and AI-generated insights, with daily summaries pushed out over WhatsApp and Telegram.</p>
+            <div class="note-card-footer">
+              <span class="note-card-price">React · Express · Prisma</span>
+              <a href="#contact" class="note-card-link">Ask for a walkthrough</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="note-card" data-niche="Web Application">
+          <div class="note-card-inner">
+            <div class="note-card-meta">
+              <span class="badge badge-tag">Prototype</span>
+              <span class="badge badge-tag">Membership ops</span>
+            </div>
+            <h3 class="note-card-title">Gym Manager</h3>
+            <p class="note-card-desc">Membership management for a gym — one-click check-in with auto-suggest search, member CRUD with photo upload, color-coded status by days to expiry, and a renewal flow with package selection and transaction logging.</p>
+            <div class="note-card-footer">
+              <span class="note-card-price">React · Express · SQLite</span>
+              <a href="#contact" class="note-card-link">Ask for a walkthrough</a>
             </div>
           </div>
         </div>
