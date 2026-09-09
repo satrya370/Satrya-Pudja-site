@@ -136,6 +136,60 @@ separate ones.
 
 ---
 
+## Phase B.5 — Interim state: the portfolio is currently live on GitHub Pages, not AWS
+
+**This section exists so whoever picks up the AWS migration doesn't get confused
+by what they find in the repo.** As of 2026-09-09, the full 9-page portfolio
+(`https://github.com/satrya370/Satrya-Pudja-site`) is deployed as a temporary
+stand-in on **GitHub Pages** while the AWS setup in this guide is still just a
+plan. This was a deliberate, explicit decision — not a shortcut that snuck in.
+
+### What's structurally different from the AWS target
+
+GitHub Pages (as a single project-page site) can only publish **one folder as
+one origin** — it has no equivalent to CloudFront's multiple alternate domain
+names pointing at path-based origins. So the repo is currently structured for
+**path-based routing under one domain**, not the subdomain-per-site layout
+Phase C describes:
+
+| | GitHub Pages (now) | AWS target (this guide) |
+|---|---|---|
+| Portfolio home | `https://satrya370.github.io/Satrya-Pudja-site/` (repo root `index.html`) | `https://satryapudja.site/` |
+| Case studies | `https://satrya370.github.io/Satrya-Pudja-site/kura2bus-site/` (path segment) | `https://kura2bus.satryapudja.site/` (subdomain) |
+| Cross-page links | Relative (`../`, `../#work`, `kura2bus-site/`) | Absolute subdomain URLs |
+
+Concretely, `site/index.html` was **moved to the repo root** (so GitHub Pages
+has an `index.html` to serve at `/`), and every cross-page link across all 9
+pages was rewritten from the AWS-target absolute form
+(`https://satryapudja.site/#work`) to a relative form (`../#work`) that
+resolves correctly under the `/Satrya-Pudja-site/` subpath GitHub Pages
+serves this repo under.
+
+### Migration checklist: GitHub Pages → AWS (when Phase C actually runs)
+
+Don't just copy the repo into S3 as-is — the link scheme has to change back:
+
+- [ ] In the (now-root) `index.html`: change `href="./"` back to the domain
+      root, and every `href="kura2bus-site/"`-style sibling link back to its
+      absolute subdomain form (`https://kura2bus.satryapudja.site/`).
+- [ ] In every `*-site/index.html`: change `href="../"` back to
+      `https://satryapudja.site/` and `href="../#work"` back to
+      `https://satryapudja.site/#work`.
+- [ ] Decide the S3/CloudFront layout from Phase C (folders vs. per-site
+      buckets) — the content itself doesn't need to move, only the link
+      scheme, since Phase C already plans for subdomains rather than path
+      segments.
+- [ ] The `DEMO_URL`/`CTA_URL` JS constants (ngrok/devtunnel tunnel URLs)
+      still need the swap described in Phase E/G regardless of which static
+      host is in front of them — that part of the migration is unaffected by
+      the GitHub Pages interim step.
+- [ ] Turn GitHub Pages off (or leave it live as a secondary mirror) once
+      CloudFront is confirmed serving correctly — don't leave two
+      inconsistent live copies of the portfolio without deciding which one
+      is canonical.
+
+---
+
 ## Phase C — Static hosting: portfolio + all case-study pages
 
 1. **One S3 bucket per site, or one bucket with folders + multiple CloudFront
