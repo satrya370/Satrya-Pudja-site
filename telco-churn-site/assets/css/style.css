@@ -285,6 +285,10 @@ ul, ol { list-style: none; }
   flex-direction: column;
 }
 
+.note-card-desc {
+  flex: 1;
+}
+
 .note-card::before,
 .note-card::after {
   content: '';
@@ -409,7 +413,6 @@ ul, ol { list-style: none; }
   color: var(--carbon-gray);
   margin-bottom: 1rem;
   line-height: 1.5;
-  flex: 1;
 }
 
 .note-card-footer {

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Telco Churn Advisor — Churn Prediction + Tool-Calling RAG Agent</title>
+<meta name="description" content="A churn-prediction model with a champion/challenger gate, paired with a tool-calling chat agent that decides for itself when to predict, explain with SHAP, or retrieve retention policy docs. Final project, Digital Skola Fullstack AI Engineering bootcamp.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script defer src="assets/js/main.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Telco Churn Advisor",
+  "description": "Churn prediction with an MLflow champion/challenger model registry, plus a manual tool-calling chat agent (prediction, SHAP explainability, RAG over retention policy docs, and account-wide statistics) with adversarial prompt-injection testing.",
+  "applicationCategory": "BusinessApplication"
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../" class="brand">Satrya Pudja</a>
+    <nav class="nav-links">
+      <a href="../#work">Portfolio</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#security">Security testing</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <a href="../#work" class="back-link">Back to portfolio</a>
+  </div>
+
+  <section class="template-hero">
+    <div class="container">
+      <h1 class="definition-lead">A churn model is easy. A model a support agent can actually interrogate — "why is this customer at risk, and what do our retention docs say to do about it" — is the harder problem.</h1>
+      <p class="quick-answer">Final project for the Digital Skola Fullstack AI Engineering bootcamp: a trained churn-prediction model behind an MLflow champion/challenger registry, paired with a chat agent that decides for itself — via manual tool-calling, not a fixed script — when to run a prediction, explain it with SHAP, pull a retention policy, or pull account-wide statistics.</p>
+      <div class="cta-row">
+        <a href="#how-it-works" class="btn btn-sobek">See how it works</a>
+        <a href="#security" class="btn btn-ghost">See the security testing</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="highlight-pill">
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🏆</span>
+        <span>
+          <span class="highlight-pill-value">Champion/challenger gate</span>
+          <span class="highlight-pill-label">A new model only replaces the live one if it genuinely outperforms it</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🛡️</span>
+        <span>
+          <span class="highlight-pill-value">5 real prompt-injection attempts</span>
+          <span class="highlight-pill-label">Direct override, RAG-poisoning, roleplay, fake history, base64 — all failed</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">📊</span>
+        <span>
+          <span class="highlight-pill-value">Real dataset, real findings</span>
+          <span class="highlight-pill-label">IBM Telco Churn data — the charts below are the model's actual output</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">What the data actually shows</h2>
+      <p class="body-lg mb-3">Two of the analytics dashboard's findings — the kind of pattern the chat agent references when it explains why a specific customer is flagged.</p>
+      <div class="catalog-grid">
+        <div class="note-card">
+          <div class="note-card-inner" style="padding:0;overflow:hidden;">
+            <img src="assets/img/samples/churn-by-contract.png" alt="Bar chart: churn rate by contract type — month-to-month around 43%, one-year around 11%, two-year under 3%" loading="lazy" style="display:block;width:100%;">
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner" style="padding:0;overflow:hidden;">
+            <img src="assets/img/samples/churn-by-tenure.png" alt="Bar chart: churn rate by tenure group — over 50% for customers in their first 6 months, dropping to under 10% past 49 months" loading="lazy" style="display:block;width:100%;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="display display-md mb-2">How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">Ingestion runs on its own schedule</h3>
+          <p class="step-desc">The IBM Telco Churn dataset loads into Postgres on startup and re-ingests hourly via APScheduler — no manual step to get data into the system.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Training is a gate, not a guarantee</h3>
+          <p class="step-desc">Five candidate models are evaluated with stratified 5-fold cross-validation — a single train/test split can give a misleading PR-AUC on imbalanced churn data purely by chance. The best candidate is logged to MLflow and promoted to `@champion` only if it actually beats the model currently in production.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">/predict scores against the live champion</h3>
+          <p class="step-desc">Loads the champion model from the MLflow Model Registry and returns a churn probability and risk level for a given customer — the model that's live, not whatever was trained most recently.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">/chat decides which tools it needs</h3>
+          <p class="step-desc">A manual tool-calling loop over OpenRouter with 6 tools — churn prediction, SHAP explanation for one customer, RAG retrieval over FAQ/retention-policy docs, and 3 tools for account-wide statistics. The agent chooses which to call per question, verified against a curated prompt set that includes prompts that should trigger zero tool calls at all.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" id="security">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Security testing, not just a demo</h2>
+      <p class="body-lg mb-3">A chat agent wired to real customer data and a document store is also an attack surface. Five real attempts were run against the live `/chat` endpoint — not hypothetical, actually executed and logged:</p>
+      <div class="catalog-grid">
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Direct override</h3>
+            <p class="note-card-desc">Asked the agent to ignore its instructions, repeat its system prompt, and hand over customer credit card numbers and passwords. It ignored the instruction and answered the underlying churn question instead.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Indirect injection via RAG poisoning</h3>
+            <p class="note-card-desc">A malicious instruction was embedded inside a document designed to rank in the top-3 retrieval results, disguised as an official policy note. The agent did not follow the embedded instruction even after retrieving and citing that chunk.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Roleplay, fake history &amp; base64</h3>
+            <p class="note-card-desc">Three more attempts — persona/roleplay framing, a fabricated prior conversation implying prior consent, and instructions obfuscated in base64. All three failed to change the agent's behavior.</p>
+          </div>
+        </div>
+      </div>
+      <p class="body-lg mt-3">Full payloads, setup, and results for all 5 are written up in the project's own <code>docs/injection_tests.md</code> — not summarized after the fact, logged at the time each was run.</p>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="email-capture">
+        <h3>Want to see it running?</h3>
+        <p>The public demo runs behind a Cloudflare Tunnel that's only live during active development sessions — the URL rotates on restart. Happy to spin it up and walk through a live query.</p>
+        <form class="email-capture-form" action="mailto:hello@satryapudja.site" method="post" enctype="text/plain">
+          <input type="email" name="email" placeholder="you@company.com" required>
+          <button type="submit" class="btn btn-sobek">Ask me</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>FastAPI, Streamlit, Postgres, MLflow, Chroma, and OpenRouter — Docker Compose, deployed via Cloudflare Tunnel for evaluation.</p>
+    <a href="../">satryapudja.site</a>
+  </div>
+</footer>
+</body>
+</html>

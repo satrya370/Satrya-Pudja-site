@@ -50,12 +50,22 @@
     ]
   }
   </script>
+<style>
+  /* Page-local addition — certificate thumbnails on the Certificates cards. */
+  .card-thumb {
+    margin: -1.5rem -1.5rem 1rem;
+    border-radius: var(--radius) var(--radius) 0 0;
+    overflow: hidden;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .card-thumb img { display: block; width: 100%; height: 180px; object-fit: cover; object-position: top; }
+</style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="container">
-    <a href="/" class="brand">Satrya Pudja</a>
+    <a href="./" class="brand">Satrya Pudja</a>
     <nav class="nav-links">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
@@ -147,15 +157,60 @@
 
       <div class="experience-item">
         <div class="experience-item-head">
-          <span class="experience-role">SEO &amp; Digital Marketing Analytics Intern — PT JTB Indonesia</span>
-          <span class="experience-meta">Mar 2025 – Jun 2025</span>
+          <span class="experience-role">PT JTB Indonesia</span>
+          <span class="experience-meta">2023 – 2025 · 4 internships</span>
         </div>
-        <ul>
-          <li>Conducted competitor, market, and business-opportunity research to identify industry trends, content directions, and positioning opportunities.</li>
-          <li>Created AI-assisted SEO articles and blog content based on keyword research, search intent, and marketing objectives.</li>
-          <li>Analyzed traffic, acquisition channels, and user behavior in Google Analytics 4 to identify SEO and website-optimization opportunities.</li>
-          <li>Summarized research and analytics findings into practical recommendations for content, SEO, advertising, and business development.</li>
-        </ul>
+        <p class="body-lg mb-2" style="color:#465367;font-size:0.9375rem;">Brought back across four separate internships over two years, working on the company's Kura2Bus OTA (Online Travel Agent) product — starting from ground-level data entry and growing into competitive research, content, and paid search.</p>
+
+        <div class="sub-role">
+          <div class="sub-role-head">
+            <span class="sub-role-title">Data Entry — OTA Division</span>
+            <span class="sub-role-meta">2023</span>
+          </div>
+          <ul>
+            <li>Entered and maintained OTA product and booking data for Kura2Bus, keeping listings accurate for the channels that depended on that data.</li>
+            <li>First hands-on exposure to how a tour operator's OTA data is actually structured and maintained — ground-level context that carried into the competitive research and paid-search work in the later internships below.</li>
+          </ul>
+        </div>
+
+        <div class="sub-role">
+          <div class="sub-role-head">
+            <span class="sub-role-title">Copywriter</span>
+            <span class="sub-role-meta">Jun 2023 – Aug 2023</span>
+          </div>
+          <ul>
+            <li>Wrote articles about the Kura2Bus OTA product for publication beyond the company's own site — Medium, WordPress, and other article-distribution platforms — as a deliberate multi-channel SEO play, not single-source blog content.</li>
+            <li>Wrote for each platform's own editorial and audience expectations rather than syndicating one identical piece everywhere, so the SEO value came from genuinely distinct content, not duplicated text.</li>
+          </ul>
+        </div>
+
+        <div class="sub-role">
+          <div class="sub-role-head">
+            <span class="sub-role-title">Digital Marketing Intern</span>
+            <span class="sub-role-meta">Jun 2024 – Aug 2024</span>
+          </div>
+          <ul>
+            <li>Ran competitive research on OTA players — how they positioned themselves, what they offered, and where their content strategy was strong or exploitable — before any content or campaign work started, not as an afterthought.</li>
+            <li>Designed the Instagram content strategy from that research: content pillars and direction built around what the competitive analysis actually found, not a generic posting calendar.</li>
+            <li>Conducted market analysis to support a new product launch — sizing the opportunity and identifying the audience it needed to reach, then translating that into concrete go-to-market input for the team.</li>
+            <li>Presented findings and recommendations directly to the marketing team, moving research from a document into decisions the team could act on.</li>
+          </ul>
+        </div>
+
+        <div class="sub-role">
+          <div class="sub-role-head">
+            <span class="sub-role-title">SEO, Google Ads &amp; Digital Marketing Analytics Intern</span>
+            <span class="sub-role-meta">Mar 2025 – Jun 2025</span>
+          </div>
+          <ul>
+            <li>Conducted competitor, market, and business-opportunity research to identify industry trends, content directions, and positioning opportunities.</li>
+            <li>Researched keywords using Google Keyword Planner, Google Trends, and Google Search — narrowing candidates to what actually fit the budget allocation and the product's positioning, not just raw search volume.</li>
+            <li>Built keyword lists for Google Ads campaigns directly from that research, turning budget and positioning constraints into an actual bidding plan rather than a generic keyword dump.</li>
+            <li>Monitored ad and website performance in Google Analytics 4 — traffic, acquisition channels, and user behavior — to see what the campaigns were actually doing, not just what they were spending.</li>
+            <li>Created AI-assisted SEO articles and blog content based on keyword research, search intent, and marketing objectives.</li>
+            <li>Summarized research and analytics findings into practical recommendations for content, SEO, advertising, and business development.</li>
+          </ul>
+        </div>
       </div>
 
       <div class="experience-item">
@@ -216,12 +271,35 @@
 
       <div class="experience-item">
         <div class="experience-item-head">
+          <span class="experience-role">CV Screening Agent — Microsoft Agent-A-Thon Challenge</span>
+          <span class="experience-meta">Jun 2026</span>
+        </div>
+        <ul>
+          <li>Built an agentic CV-screening solution using Microsoft Copilot's agent-building tools for the Microsoft Agent-A-Thon competition — an agent that reads submitted CVs and screens them against role criteria instead of a manual first-pass review.</li>
+          <li>Completed the challenge and received a certificate for it (see Certificates below).</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-item-head">
           <span class="experience-role">AI-Assisted Business Management SaaS Prototypes — Personal Projects</span>
           <span class="experience-meta">May 2026 – Jun 2026</span>
         </div>
         <ul>
           <li>Built a set of n8n pipelines for real business tasks — SWOT and TOWS strategy generation, receipt-to-Excel OCR extraction, GEO-optimized article drafting with score-gated publishing, and trip-brief-to-brochure document generation.</li>
           <li>Directed Claude Code and OpenCode against specs and implementation plans for each pipeline — node design, prompt design, and validation gates — rather than building node-by-node without a written plan.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-item-head">
+          <span class="experience-role">Telco Churn Advisor — Final Project, Digital Skola Fullstack AI Engineering Bootcamp</span>
+          <span class="experience-meta">Aug 2026</span>
+        </div>
+        <ul>
+          <li>Built a churn-prediction model with stratified 5-fold cross-validation and an MLflow champion/challenger registry that only promotes a new model when it genuinely outperforms the one in production.</li>
+          <li>Built a manual tool-calling chat agent over OpenRouter with 6 tools — prediction, SHAP explainability, RAG retrieval over retention-policy docs, and account-wide statistics — verified against a curated prompt set including prompts that should trigger zero tool calls.</li>
+          <li>Ran 5 real adversarial prompt-injection attempts against the deployed agent — direct override, RAG-poisoning, roleplay, fake conversation history, and base64 obfuscation — all documented and all unsuccessful (see Telco Churn Advisor above).</li>
         </ul>
       </div>
     </div>
@@ -237,13 +315,43 @@
           <div class="note-card-inner">
             <div class="note-card-meta">
               <span class="badge badge-paid">Case study</span>
+              <span class="badge badge-tag">Market Research &amp; Content Strategy</span>
+            </div>
+            <h3 class="note-card-title">PT JTB Indonesia — Digital Marketing</h3>
+            <p class="note-card-desc">Went head-to-head with OTA competitors before a single post went out — competitive research into how they positioned and won, an Instagram content strategy built directly on what that research found, and market analysis that shaped a new product launch. Strategy first, content second, in that order.</p>
+            <div class="note-card-footer">
+              <span class="note-card-price">Jun 2024 – Aug 2024</span>
+              <a href="#experience" class="note-card-link">Read more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta">
+              <span class="badge badge-paid">Case study</span>
+              <span class="badge badge-tag">Google Ads &amp; SEO</span>
+            </div>
+            <h3 class="note-card-title">PT JTB Indonesia — Google Ads Specialist</h3>
+            <p class="note-card-desc">Turned Google Keyword Planner, Google Trends, and Google Search research into keyword lists that actually matched the budget and the product's positioning — not the highest-volume keywords, the right ones — then tracked what those campaigns actually did in Google Analytics 4.</p>
+            <div class="note-card-footer">
+              <span class="note-card-price">Mar 2025 – Jun 2025</span>
+              <a href="#experience" class="note-card-link">Read more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta">
+              <span class="badge badge-paid">Case study</span>
               <span class="badge badge-tag">Product Management</span>
             </div>
             <h3 class="note-card-title">HariBersama.com — Product Manager</h3>
             <p class="note-card-desc">Led product strategy for a digital wedding invitation platform — B2B partnership research, SWOT-based business strategy, and social media marketing direction, translated into concrete feature and service recommendations.</p>
             <div class="note-card-footer">
               <span class="note-card-price">Dec 2025 – Feb 2026</span>
-              <a href="../haribersama-site/" class="note-card-link">Read the case study</a>
+              <a href="haribersama-site/" class="note-card-link">Read the case study</a>
             </div>
           </div>
         </div>
@@ -258,7 +366,7 @@
             <p class="note-card-desc">Managed SEO and Google Analytics performance monitoring for kura2bus.com and its @kurakurabus Instagram — including the "Highlight of Central Bali" tour page, the subject of my bachelor thesis: 97 booking clicks, 1 completed transaction, and why.</p>
             <div class="note-card-footer">
               <span class="note-card-price">2025 – Mar 2026</span>
-              <a href="../kura2bus-site/" class="note-card-link">Read the case study</a>
+              <a href="kura2bus-site/" class="note-card-link">Read the case study</a>
             </div>
           </div>
         </div>
@@ -288,7 +396,7 @@
             <p class="note-card-desc">Researches a topic and drafts a long-form article structured for how generative-AI answer engines actually cite sources — applying GEO/AI-visibility fundamentals, not just traditional keyword SEO.</p>
             <div class="note-card-footer">
               <span class="note-card-price">n8n · 60 nodes</span>
-              <a href="../geo-builder-site/" class="note-card-link">Try the demo</a>
+              <a href="geo-builder-site/" class="note-card-link">Try the demo</a>
             </div>
           </div>
         </div>
@@ -303,7 +411,7 @@
             <p class="note-card-desc">A short trip brief becomes a formatted HTML + PDF travel brochure — schedule, route, practical guidance — with a travel-time guard and a QA gate that blocks prices, opening-hour claims, and OTA-style sales language.</p>
             <div class="note-card-footer">
               <span class="note-card-price">n8n · 60 nodes</span>
-              <a href="../itinerary-site/" class="note-card-link">View project</a>
+              <a href="itinerary-site/" class="note-card-link">View project</a>
             </div>
           </div>
         </div>
@@ -318,7 +426,7 @@
             <p class="note-card-desc">Turns a business description into a structured SWOT analysis document — each quadrant grounded in the actual input, not generic filler, delivered as a formatted report.</p>
             <div class="note-card-footer">
               <span class="note-card-price">n8n · 34 nodes</span>
-              <a href="../swot-site/" class="note-card-link">Try the demo</a>
+              <a href="swot-site/" class="note-card-link">Try the demo</a>
             </div>
           </div>
         </div>
@@ -330,9 +438,9 @@
               <span class="badge badge-tag">Meeting ops</span>
             </div>
             <h3 class="note-card-title">Meeting Notes Pipeline</h3>
-            <p class="note-card-desc">Turns an uploaded recording into structured notes with decisions and action items — transcribed, classified, and routed to Notion and Slack automatically.</p>
+            <p class="note-card-desc">Turns an uploaded recording (or a Google Drive link) into structured notes with decisions and action items — transcribed with Whisper, classified by meeting type, and emailed back as Markdown or PDF.</p>
             <div class="note-card-footer">
-              <span class="note-card-price">n8n · 47 nodes</span>
+              <span class="note-card-price">n8n · 23 nodes</span>
               <a href="https://satrya370.github.io/Meeting-N8n/" class="note-card-link" target="_blank" rel="noopener">Try the demo</a>
             </div>
           </div>
@@ -348,7 +456,22 @@
             <p class="note-card-desc">Photograph a receipt, get back canonical structured JSON — vendor, line items, totals — or a ready-to-download spreadsheet. Built to handle messy, real-world receipt photos, not clean scans.</p>
             <div class="note-card-footer">
               <span class="note-card-price">n8n · 20 + 36 nodes</span>
-              <a href="../receipt-ocr-site/" class="note-card-link">Try the demo</a>
+              <a href="receipt-ocr-site/" class="note-card-link">Try the demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta">
+              <span class="badge badge-tag">Bootcamp final project</span>
+              <span class="badge badge-tag">ML &amp; RAG agent</span>
+            </div>
+            <h3 class="note-card-title">Telco Churn Advisor</h3>
+            <p class="note-card-desc">Churn prediction with an MLflow champion/challenger model registry, plus a tool-calling chat agent that decides for itself whether to predict, explain with SHAP, or pull retention-policy docs — stress-tested with 5 real prompt-injection attempts.</p>
+            <div class="note-card-footer">
+              <span class="note-card-price">FastAPI · MLflow · RAG</span>
+              <a href="telco-churn-site/" class="note-card-link">See the project</a>
             </div>
           </div>
         </div>
@@ -363,7 +486,7 @@
             <p class="note-card-desc">A standalone RAG tool (not an n8n workflow) for structured paper summaries, reviews, and document Q&amp;A — deterministic retrieval, BM25, semantic search, embeddings, and reranking, built with Claude Code and OpenCode.</p>
             <div class="note-card-footer">
               <span class="note-card-price">Node.js · RAG</span>
-              <a href="../academic-review-site/" class="note-card-link">See the project</a>
+              <a href="academic-review-site/" class="note-card-link">See the project</a>
             </div>
           </div>
         </div>
@@ -398,6 +521,35 @@
           <li>Python, machine learning fundamentals, and MLOps — moving from workflow-level automation toward the underlying model and data layer.</li>
           <li>Databases, JSON, and REST APIs — the integration layer every workflow in this portfolio depends on.</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" id="certificates">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Certificates</h2>
+      <div class="catalog-grid">
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="card-thumb"><img src="assets/img/certificates/pt-jtb-internship.jpg" alt="PT JTB Indonesia internship completion certificate, No. 035/JTB/ADM/VI/2025" loading="lazy"></div>
+            <h3 class="note-card-title">PT JTB Indonesia — Internship Completion</h3>
+            <p class="note-card-desc">Certificate No. 035/JTB/ADM/VI/2025, for the March–June 2025 internship (see PT JTB Indonesia above).</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="card-thumb"><img src="assets/img/certificates/microsoft-agent-a-thon.jpg" alt="Certificate of attendance for the Microsoft Agent-A-Thon competition, issued by Trainocate, 12 June 2026" loading="lazy"></div>
+            <h3 class="note-card-title">Microsoft Agent-A-Thon</h3>
+            <p class="note-card-desc">Certificate of attendance from Trainocate for the Microsoft Agent-A-Thon competition, 12 June 2026 — the CV-screening agent challenge above.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="card-thumb"><img src="assets/img/certificates/juaravibecoding.jpg" alt="JuaraVibeCoding certificate of completion, issued by Google Developer Groups, May 2026" loading="lazy"></div>
+            <h3 class="note-card-title">#JuaraVibeCoding</h3>
+            <p class="note-card-desc">Certificate of completion from Google Developer Groups, May 2026 — for the Academic Review Assistant project above.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
