@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Academic Review Assistant — Structured Summaries, Reviews & Q&A for Any Paper</title>
+<meta name="description" content="A standalone RAG application that turns a journal PDF into a structured summary, a 9-field review, and a document Q&A chat — deterministic retrieval first, semantic and full-text search as fallbacks. Built with Claude Code and OpenCode, not an n8n workflow.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script defer src="assets/js/main.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Academic Review Assistant",
+  "description": "A RAG application for structured academic paper summaries, reviews, comparison, and document Q&A, using a three-tier deterministic-then-semantic-then-full-text retrieval pipeline.",
+  "applicationCategory": "EducationApplication"
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="https://satryapudja.site/" class="brand">Satrya Pudja</a>
+    <nav class="nav-links">
+      <a href="https://satryapudja.site/#work">Portfolio</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">Features</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <a href="https://satryapudja.site/#work" class="back-link">Back to portfolio</a>
+  </div>
+
+  <section class="template-hero">
+    <div class="container">
+      <h1 class="definition-lead">Upload a paper. Get a structured review back — not just a summary that restates the abstract.</h1>
+      <p class="quick-answer">A standalone RAG application, not an n8n workflow: a journal PDF or DOCX gets segmented into classified sections, embedded per paragraph, and stored so its AI features — summarize, review, compare, and Q&amp;A — retrieve deterministically first, and only fall back to semantic or full-text search when a section can't be located directly.</p>
+      <div class="cta-row">
+        <a href="#how-it-works" class="btn btn-sobek">See how it works</a>
+        <a href="#features" class="btn btn-ghost">See the features</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="highlight-pill">
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🧩</span>
+        <span>
+          <span class="highlight-pill-value">Hybrid segmentation</span>
+          <span class="highlight-pill-label">Multi-signal heading detection, LLM classification as fallback</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🔍</span>
+        <span>
+          <span class="highlight-pill-value">Three-tier retrieval</span>
+          <span class="highlight-pill-label">Deterministic → semantic vector search → full-text, in that order</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🛠️</span>
+        <span>
+          <span class="highlight-pill-value">Built with Claude Code &amp; OpenCode</span>
+          <span class="highlight-pill-label">Node.js/Express API, MongoDB, React frontend — actively in progress</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">The actual interface</h2>
+      <p class="body-lg mb-3">Drop a paper in, no login required — this is the running frontend, not a mockup.</p>
+      <div class="note-card" style="max-width:760px;margin:0 auto;">
+        <div class="note-card-inner" style="padding:0;overflow:hidden;">
+          <img src="assets/img/samples/academic-review-running.png" alt="Screenshot of the Academic Review Assistant upload screen, showing a drop zone and quick-action buttons for review, Q&A, text-to-speech, recommendations, comparison, and Mendeley sync" loading="lazy" style="display:block;width:100%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="display display-md mb-2">How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">Upload &amp; hybrid segmentation</h3>
+          <p class="step-desc">A PDF or DOCX is parsed with pdf.js, with Azure Document Intelligence as OCR fallback for scanned pages. Multi-signal heading detection slices it into sections; anything ambiguous gets classified by an LLM instead of guessed at.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Per-paragraph embeddings</h3>
+          <p class="step-desc">Every paragraph is embedded and stored alongside its classified section type in MongoDB — the structure that makes deterministic retrieval possible in the first place.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Three-tier retrieval, not pure vector search</h3>
+          <p class="step-desc">For structured tasks, the system checks for a regex-matched section type first, falls back to semantic vector search second, and full-text search last. Pure vector search is reserved for open-ended Q&amp;A, where there's no fixed section to target.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Feature-specific chains run on top</h3>
+          <p class="step-desc">The retrieved sections feed dedicated prompt chains for summarizing, reviewing, or comparing — each one scoped to the fields that feature actually needs, not one generic "ask the AI about this paper" prompt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" id="features">
+    <div class="container">
+      <h2 class="display display-sm mb-3">What it does</h2>
+      <div class="catalog-grid">
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="badge badge-free">Live</span></div>
+            <h3 class="note-card-title">Structured summary</h3>
+            <p class="note-card-desc">An 8-aspect academic summary table generated per journal, in Bahasa Indonesia — Abstract, Introduction, Research Objectives, Research Methods, Results, Discussion, Strengths, and Weaknesses, each aspect retrieved from its own classified section rather than one pass over the whole PDF.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="badge badge-free">Live</span></div>
+            <h3 class="note-card-title">Structured review</h3>
+            <p class="note-card-desc">A 9-field JSON review — journal title, authors, year and volume, research objectives, research subjects, research methods, research results, strengths, and weaknesses — each field pulled from the section it actually belongs to, not inferred generically from the abstract.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="badge badge-free">Live</span></div>
+            <h3 class="note-card-title">Document Q&amp;A</h3>
+            <p class="note-card-desc">Ask a free-form question and get a streamed answer. Retrieval runs BM25 keyword search and vector search in parallel, merges them by reciprocal rank fusion, boosts by likely section, then reranks with an LLM cross-encoder before the answer is written.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="badge badge-free">Live</span></div>
+            <h3 class="note-card-title">Multi-paper comparison</h3>
+            <p class="note-card-desc">Deterministic retrieval pulls the methods and results sections from both journals, then a comparison prompt returns structured JSON: method similarities, method differences, result similarities, result differences, and an overall conclusion — not a free-text paragraph.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="badge badge-free">Live</span></div>
+            <h3 class="note-card-title">Literature review export</h3>
+            <p class="note-card-desc">Turn a reviewed paper into a narrative .docx export instead of copying fields out by hand — built on the <code>docx</code> npm package directly from the same structured review data, not a separate manual write-up.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="badge badge-free">Live</span></div>
+            <h3 class="note-card-title">Listen to the summary</h3>
+            <p class="note-card-desc">The generated summary is turned into a spoken script and rendered to audio, so a paper's key points can be reviewed while doing something else instead of only as text on screen.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="badge badge-free">Live</span></div>
+            <h3 class="note-card-title">Citation enrichment</h3>
+            <p class="note-card-desc">Pulls citation count, influential citation count, and citation intent from Semantic Scholar's public API, matched by DOI or title, so a paper's standing isn't limited to what's printed on the PDF itself.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="badge badge-tag">In progress</span></div>
+            <h3 class="note-card-title">Tag extraction &amp; Mendeley sync</h3>
+            <p class="note-card-desc">Automated keyword tagging and OAuth-based import from a user's Mendeley library are the two pieces still being built — the UI has a place for both already, but the extraction logic and the OAuth flow aren't wired up yet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="email-capture">
+        <h3>Reviewing papers for research or coursework?</h3>
+        <p>This is a standalone app I'm actively building, not a hosted demo yet — happy to walk through the architecture or the RAG retrieval design in more depth.</p>
+        <form class="email-capture-form" action="mailto:hello@satryapudja.site" method="post" enctype="text/plain">
+          <input type="email" name="email" placeholder="you@company.com" required>
+          <button type="submit" class="btn btn-sobek">Ask me</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Built with Node.js/Express, MongoDB, LangChain.js, and React — developed with Claude Code and OpenCode.</p>
+    <a href="https://satryapudja.site/">satryapudja.site</a>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SWOT Generator — Turn a Business Description into a Full SWOT & TOWS Report</title>
+<meta name="description" content="An n8n pipeline that takes a business, product, or project description and returns a full SWOT analysis with TOWS strategies and priority actions as a formatted document — grounded in what you actually tell it, with optional live web research.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script defer src="assets/js/main.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SWOT Generator",
+  "description": "n8n pipeline that generates a structured SWOT analysis and TOWS strategy report from a business, product, or project description, with an optional live web research pass.",
+  "applicationCategory": "BusinessApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="https://satryapudja.site/" class="brand">Satrya Pudja</a>
+    <nav class="nav-links">
+      <a href="https://satryapudja.site/#work">Portfolio</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#try-it">Try it</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <a href="https://satryapudja.site/#work" class="back-link">Back to portfolio</a>
+  </div>
+
+  <section class="template-hero">
+    <div class="container">
+      <h1 class="definition-lead">Describe the business. Get back a decision-ready SWOT — not a list of adjectives.</h1>
+      <p class="quick-answer">Most SWOT exercises stall at four bullet lists that don't lead anywhere. This pipeline asks for the actual decision behind the analysis first, then builds strengths, weaknesses, opportunities, and threats — plus SO/WO/ST/WT strategies and priority actions — as a formatted report you can hand to someone else.</p>
+      <div class="cta-row">
+        <a data-cta href="#try-it" class="btn btn-sobek">Try it</a>
+        <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="highlight-pill">
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🎯</span>
+        <span>
+          <span class="highlight-pill-value">Starts from a decision</span>
+          <span class="highlight-pill-label">Not "analyze my business" — "should I expand in the next 12 months"</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🔎</span>
+        <span>
+          <span class="highlight-pill-value">Optional live research</span>
+          <span class="highlight-pill-label">Can pull external market/competitor context, or stay strictly to what you provide</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">📄</span>
+        <span>
+          <span class="highlight-pill-value">Full report, not a summary</span>
+          <span class="highlight-pill-label">SWOT matrix, TOWS strategies, priority actions, and stated assumptions</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Real output, not a mockup</h2>
+      <p class="body-lg mb-3">A page from an actual generated report — a five-year-old herbal shop in Yogyakarta weighing whether to open a second location.</p>
+      <div class="note-card" style="max-width:640px;margin:0 auto;">
+        <div class="note-card-inner" style="padding:0;overflow:hidden;">
+          <img src="assets/img/samples/swot-footage.png" alt="Sample generated SWOT report page showing an executive summary and a four-quadrant SWOT matrix" loading="lazy" style="display:block;width:100%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="display display-md mb-2">How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">You describe the situation</h3>
+          <p class="step-desc">What you're analyzing, the decision it needs to inform, your target market, current condition, internal resources, and known limitations — the same inputs a real strategist would ask for.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">A safety guard checks the input</h3>
+          <p class="step-desc">Empty, abusive, or unsupported submissions are rejected before any analysis runs.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Optional research, then synthesis</h3>
+          <p class="step-desc">If you ask for it, the pipeline researches competitors and market context first. Either way, the AI analyst builds the SWOT from your input plus whatever evidence it gathered — never inventing a claim it can't trace back.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">A validated report comes back</h3>
+          <p class="step-desc">Four-quadrant SWOT, TOWS strategies (SO, WO, ST, WT), priority actions, and a stated confidence/limitations section — delivered as a document, emailed if you gave an address.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">What's actually in the report</h2>
+      <div class="catalog-grid">
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">SWOT matrix</h3>
+            <p class="note-card-desc">Strengths, weaknesses, opportunities, and threats — each one tied to a stated basis, not a floating adjective.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">TOWS strategies</h3>
+            <p class="note-card-desc">SO, WO, ST, and WT strategies that combine two quadrants into an actual move, plus ranked priority actions.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Assumptions &amp; limitations</h3>
+            <p class="note-card-desc">What was assumed, what evidence was missing, and what came from your input versus external research — stated explicitly, not hidden.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" id="try-it">
+    <div class="container">
+      <div class="email-capture">
+        <h3>Have a business, product, or idea to stress-test?</h3>
+        <p>Try the live demo — answer a few questions about the real decision behind it and see the report it builds.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a data-cta href="#try-it" class="btn btn-sobek">Try it</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Built with n8n and an AI strategy-analyst pipeline with an optional live web-research pass.</p>
+    <a href="https://satryapudja.site/">satryapudja.site</a>
+  </div>
+</footer>
+
+<script>
+  // Single point of change: swap this for the AWS-hosted n8n form URL once
+  // the migration in TODOS.md (CP009–CP011) is done. Everything else on
+  // this page stays the same.
+  const DEMO_URL = 'https://superhero-family-skimpily.ngrok-free.dev/form/swot-generator';
+  document.querySelectorAll('[data-cta]').forEach((link) => { link.href = DEMO_URL; link.target = '_blank'; link.rel = 'noopener'; });
+</script>
+</body>
+</html>

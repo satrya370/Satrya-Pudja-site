@@ -1,0 +1,22 @@
+# Local dev / runtime — not part of the deployed static sites
+.sites-runtime/
+shots/
+serve-site.log
+shot.cjs
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+
+# Personal / confidential source documents — used to write case-study copy,
+# not meant to be published in the repo
+*.pdf
+*.docx
+*.jpeg
+*.jpg
+*.png
+!**/assets/img/**
+!**/samples/**
+Credential_information.md
+"Worksheet Klien a.n I Gede Satrya Negara Pudja.docx"
+"Worksheet Klien a.n I Gede Satrya Negara Pudja.pdf"

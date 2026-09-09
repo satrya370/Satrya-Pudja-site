@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Receipt to Excel — Photograph a Receipt, Get Back Structured Data</title>
+<meta name="description" content="An n8n pipeline that reads a photographed receipt with AI vision and returns a structured Excel workbook or JSON — built to handle messy real-world receipt photos, not clean scans.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script defer src="assets/js/main.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Receipt to Excel",
+  "description": "n8n pipeline that extracts structured data from a photographed receipt using AI vision, with a repair pass for malformed output, returning an Excel workbook or JSON.",
+  "applicationCategory": "BusinessApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="https://satryapudja.site/" class="brand">Satrya Pudja</a>
+    <nav class="nav-links">
+      <a href="https://satryapudja.site/#work">Portfolio</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#try-it">Try it</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <a href="https://satryapudja.site/#work" class="back-link">Back to portfolio</a>
+  </div>
+
+  <section class="template-hero">
+    <div class="container">
+      <h1 class="definition-lead">Photograph a receipt. Get back a spreadsheet, not a pile of paper.</h1>
+      <p class="quick-answer">Upload a photo of a real receipt — creased, angled, printed on thermal paper that's already fading — and this pipeline reads it with AI vision, validates the result, and hands you back a structured Excel workbook or JSON. Built for the receipts people actually have, not clean sample scans.</p>
+      <div class="cta-row">
+        <a data-cta href="#try-it" class="btn btn-sobek">Try it</a>
+        <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="highlight-pill">
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">📷</span>
+        <span>
+          <span class="highlight-pill-value">Photo in</span>
+          <span class="highlight-pill-label">JPG, PNG, or WEBP — straight from a phone camera</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">📊</span>
+        <span>
+          <span class="highlight-pill-value">Excel or JSON out</span>
+          <span class="highlight-pill-label">A downloadable workbook, or raw structured data for developers</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🔁</span>
+        <span>
+          <span class="highlight-pill-value">Keeps adding to one workbook</span>
+          <span class="highlight-pill-label">Upload last time's Excel file to append instead of starting over</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="display display-md mb-2">How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">Upload the photo</h3>
+          <p class="step-desc">A phone photo of the receipt, plus optionally last time's Excel workbook if you want this one added to it instead of starting fresh.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">AI vision reads it</h3>
+          <p class="step-desc">Vendor, line items, and totals are extracted directly from the image — no manual typing, no template matching against a fixed receipt layout.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">A repair pass checks the output</h3>
+          <p class="step-desc">If the first extraction comes back malformed, a second pass repairs it before anything is returned — the same fail-closed pattern behind every pipeline on this site.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Excel or JSON comes back</h3>
+          <p class="step-desc">A downloadable workbook for a person, or structured JSON if you're wiring this into something else.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Three processing modes</h2>
+      <div class="catalog-grid">
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Balanced</h3>
+            <p class="note-card-desc">The default. Extracts what it can confidently read and fills reasonable gaps — good for everyday receipts.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Strict</h3>
+            <p class="note-card-desc">Only returns fields it's actually confident about, rather than guessing at anything blurry or ambiguous.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Inspect</h3>
+            <p class="note-card-desc">Returns the raw extraction as JSON instead of a workbook — useful for checking exactly what the model saw before trusting it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" id="try-it">
+    <div class="container">
+      <div class="email-capture">
+        <h3>Have a receipt on hand?</h3>
+        <p>Try the live demo — upload a real photo and see what comes back.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a data-cta href="#try-it" class="btn btn-sobek">Try it</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Built with n8n, OpenRouter (Gemini Vision + GPT-OSS 120B).</p>
+    <a href="https://satryapudja.site/">satryapudja.site</a>
+  </div>
+</footer>
+
+<script>
+  // Single point of change: swap this for the AWS-hosted n8n form URL once
+  // the migration in TODOS.md (CP009–CP011) is done. Everything else on
+  // this page stays the same.
+  const DEMO_URL = 'https://superhero-family-skimpily.ngrok-free.dev/form/receipt-upload';
+  document.querySelectorAll('[data-cta]').forEach((link) => { link.href = DEMO_URL; link.target = '_blank'; link.rel = 'noopener'; });
+</script>
+</body>
+</html>

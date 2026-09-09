@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Itinerary Brochure Engine — Automated Travel Itinerary Brochures (HTML + PDF)</title>
+<meta name="description" content="Turn a short trip brief into a finished travel itinerary brochure — HTML + PDF — for half-day, full-day, multi-day, or destination-guide trips. Automated QA rejects anything that doesn't meet the standard.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script defer src="assets/js/main.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Itinerary Brochure Engine",
+  "description": "Generates a formatted travel itinerary brochure (HTML + PDF) from a short trip brief, with an automated QA gate that rejects output failing the required standard.",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this show prices or a quote?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The QA gate rejects any output containing a monetary value or currency symbol in any form. This is a guidance brochure, not a pricing document."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it show opening hours or ticket prices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Opening hours and ticket prices change often and are easy to get wrong, so the QA gate automatically rejects that kind of claim. The brochure directs guests to confirm details on site instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it show ratings, review counts, or a book-now button like an OTA listing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The QA gate explicitly rejects star ratings, review counts, scarcity claims, and booking buttons. This is a guidance brochure, not an OTA product page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do the destination photos come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Photos are sourced automatically at the region/destination level, never as a claimed photo of one specific spot, and every photo used carries photographer attribution. If no photo meets the confidence threshold, the system falls back to a themed colour gradient instead of risking a wrong photo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to get the brochure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The pipeline runs automatically in the background after the form is submitted — the finished HTML and PDF are emailed once ready, not displayed immediately in the browser."
+      }
+    }
+  ]
+}
+</script>
+<style>
+  /* Page-local addition — real screenshot thumbnails on the four mode cards. */
+  .card-thumb {
+    margin: -1.5rem -1.5rem 1rem;
+    border-radius: var(--radius) var(--radius) 0 0;
+    overflow: hidden;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .card-thumb img { display: block; width: 100%; height: 170px; object-fit: cover; object-position: top; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="https://satryapudja.site/" class="brand">Satrya Pudja</a>
+    <nav class="nav-links">
+      <a href="https://satryapudja.site/#work">Portfolio</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <a href="https://satryapudja.site/#work" class="back-link">Back to portfolio</a>
+  </div>
+
+  <section class="template-hero">
+    <div class="container">
+      <h1 class="definition-lead">A digital travel brochure, assembled automatically from your short brief.</h1>
+      <p class="quick-answer">Fill in one form: destination, trip type, and guest preferences. Out comes a matched pair of brochures — an HTML page for guests to open on their phone, and a full-colour PDF — sent to the agent's email once ready. Output language is detected automatically from the brief.</p>
+      <div class="cta-row">
+        <a href="#try-it" class="btn btn-sobek">Try it</a>
+        <a href="#faq" class="btn btn-ghost">See FAQ</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="highlight-pill">
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🗺️</span>
+        <span>
+          <span class="highlight-pill-value">4 trip modes</span>
+          <span class="highlight-pill-label">Half-day, full-day, multi-day, or a destination guide with no fixed schedule</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">📄</span>
+        <span>
+          <span class="highlight-pill-value">HTML + PDF</span>
+          <span class="highlight-pill-label">One self-contained file per format, no external dependencies</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🌐</span>
+        <span>
+          <span class="highlight-pill-value">Auto language</span>
+          <span class="highlight-pill-label">Output language follows the language the brief was written in</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="display display-sm mb-2">What's inside</h2>
+      <ul class="feature-list">
+        <li>Visit flow rendered as a vertical connected timeline (scheduled modes) or grouped spot cards (destination guide) — never a flat list that gets unreadable once there are more than a few stops</li>
+        <li>An automatic travel-time guard — rejects a route that's physically impossible to complete in the trip's duration, with a different active-hours cap per mode</li>
+        <li>An automated QA gate that rejects monetary values, opening-hour or ticket-price claims, star ratings, and other OTA-product-page tells before a brochure is ever considered finished</li>
+        <li>Brochure colour palette matched automatically to destination type — beach, mountain, city, cultural, nature, desert, or mixed</li>
+        <li>Region-level destination photography with attribution, or a themed gradient when no photo clears the confidence bar — never the wrong photo</li>
+        <li>Trips longer than 7 days are automatically condensed into date ranges, not repeated as 14 near-identical day cards</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Four modes, one form</h2>
+      <div class="catalog-grid">
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="card-thumb"><img src="assets/img/samples/half-day.png" alt="Sample half-day itinerary brochure output, showing a timeline agenda for a short Ubud trip" loading="lazy"></div>
+            <h3 class="note-card-title">Half-day</h3>
+            <p class="note-card-desc">A short trip inside a single time block, capped at 6 active hours. Good for a gap agenda before a flight or after check-in.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="card-thumb"><img src="assets/img/samples/full-day.png" alt="Sample full-day itinerary brochure output, showing a balanced-pace day route in Ubud" loading="lazy"></div>
+            <h3 class="note-card-title">Full-day</h3>
+            <p class="note-card-desc">One full day, capped at 11 active hours, using realistic regional travel speeds — not highway speeds.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="card-thumb"><img src="assets/img/samples/multi-day.png" alt="Sample multi-day itinerary brochure output, showing a two-day route with an overnight accommodation note" loading="lazy"></div>
+            <h3 class="note-card-title">Multi-day</h3>
+            <p class="note-card-desc">2–14 days, with an overnight accommodation note per day. Runs of similar days past day 7 are condensed automatically instead of repeated in full.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="card-thumb"><img src="assets/img/samples/destination-guide.png" alt="Sample destination-guide brochure output, showing grouped spot cards with no fixed visit times" loading="lazy"></div>
+            <h3 class="note-card-title">Destination guide</h3>
+            <p class="note-card-desc">Ordered spot cards with no visit times. Spots are grouped by area once there are nine or more, never thinned out to hide the count.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">Fill in the form</h3>
+          <p class="step-desc">Destination, trip type, guest count, themes, and anything that must be included or avoided.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">The route gets structured</h3>
+          <p class="step-desc">A trip skeleton is built, venues are checked, and travel time is verified — all before any of it is written into final copy.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Automated QA filters the result</h3>
+          <p class="step-desc">Output containing prices, opening-hour claims, or OTA-page tells is rejected and repaired before moving on.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">HTML + PDF land in your inbox</h3>
+          <p class="step-desc">Once it clears QA, the brochure is rendered into an HTML page and a full-colour PDF, sent to the agent's email.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">What this tool doesn't do</h2>
+      <ul class="feature-list">
+        <li>Doesn't show prices, quotes, or any monetary value whatsoever</li>
+        <li>Doesn't claim opening hours or admission prices that change and could be wrong</li>
+        <li>Doesn't add star ratings, review counts, scarcity claims, or a book-now button like an OTA product page</li>
+        <li>Doesn't book anything — this is a guidance brochure, not a booking engine</li>
+        <li>Never presents a photo as "this is the actual photo" of one specific spot — photography is always region-level, with attribution</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-sm" id="faq">
+    <div class="container">
+      <h2 class="display display-sm mb-3">FAQ</h2>
+      <div class="faq-list faq-list--aligned">
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Does this show prices or a quote?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. The QA gate rejects any output containing a monetary value or currency symbol in any form. This is a guidance brochure, not a pricing document.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Does it show opening hours or ticket prices?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. Opening hours and ticket prices change often and are easy to get wrong, so the QA gate automatically rejects that kind of claim. The brochure directs guests to confirm details on site instead.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Does it show ratings, review counts, or a book-now button like an OTA listing?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. The QA gate explicitly rejects star ratings, review counts, scarcity claims, and booking buttons. This is a guidance brochure, not an OTA product page.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Where do the destination photos come from?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Photos are sourced automatically at the region/destination level, never as a claimed photo of one specific spot, and every photo used carries photographer attribution. If no photo meets the confidence threshold, the system falls back to a themed colour gradient instead of risking a wrong photo.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>How long does it take to get the brochure?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>The pipeline runs automatically in the background after the form is submitted — the finished HTML and PDF are emailed once ready, not displayed immediately in the browser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" id="try-it">
+    <div class="container">
+      <div class="email-capture">
+        <h3>Try the Itinerary Brochure Engine</h3>
+        <p>Free. The full self-serve form is still being finished — leave your email and you'll be notified the moment it's live.</p>
+        <form class="email-capture-form" action="mailto:hello@satryapudja.site" method="post" enctype="text/plain">
+          <input type="email" name="email" placeholder="you@youragency.com" required>
+          <button type="submit" class="btn btn-sobek">Notify me</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Satrya Pudja</p>
+    <a href="https://satryapudja.site/">satryapudja.site</a>
+  </div>
+</footer>
+</body>
+</html>

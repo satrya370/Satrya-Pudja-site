@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEO Article Builder — Articles Structured to Be Cited by AI Answer Engines</title>
+<meta name="description" content="An n8n pipeline that researches a topic, drafts a long-form article scored against a 7-category GEO rubric, revises it up to twice, and auto-publishes to WordPress — built for how AI answer engines like ChatGPT and Perplexity actually extract and cite content.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script defer src="assets/js/main.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "GEO Article Builder",
+  "description": "n8n pipeline that researches, drafts, scores against a GEO (Generative Engine Optimization) rubric, revises, and auto-publishes long-form articles to WordPress.",
+  "applicationCategory": "BusinessApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="https://satryapudja.site/" class="brand">Satrya Pudja</a>
+    <nav class="nav-links">
+      <a href="https://satryapudja.site/#work">Portfolio</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#try-it">Try it</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <a href="https://satryapudja.site/#work" class="back-link">Back to portfolio</a>
+  </div>
+
+  <section class="template-hero">
+    <div class="container">
+      <h1 class="definition-lead">Most articles are written to be read. This one is written to survive being cut down to a single quoted sentence.</h1>
+      <p class="quick-answer">GEO here stands for Generative Engine Optimization — not location targeting. ChatGPT, Perplexity, and Google's AI Overview rarely read an article start to finish; they lift out one section, one sentence, sometimes a single claim, and cite that. This pipeline researches a topic, drafts a full article, and scores every section against a 7-category rubric built around exactly that behavior — then rewrites whatever would get skipped over, and publishes only once the draft actually clears the bar.</p>
+      <div class="cta-row">
+        <a data-cta href="#try-it" class="btn btn-sobek">Try it</a>
+        <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="highlight-pill">
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🚦</span>
+        <span>
+          <span class="highlight-pill-value">Score-gated publishing</span>
+          <span class="highlight-pill-label">Below 60 is rejected, 60–79 goes through revision, 80+ publishes</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🔁</span>
+        <span>
+          <span class="highlight-pill-value">Revision loop, capped</span>
+          <span class="highlight-pill-label">Up to 2 automatic rewrites before a piece is set aside instead of looping forever</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">📰</span>
+        <span>
+          <span class="highlight-pill-value">Runs live in production</span>
+          <span class="highlight-pill-label">Publishes directly to a real WordPress.com blog, not a staging sandbox</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Real output, not a mockup</h2>
+      <p class="body-lg mb-3">Articles this pipeline actually wrote and published — a philosophy blog it runs end to end, from topic to live post.</p>
+      <div class="note-card" style="max-width:640px;margin:0 auto;">
+        <div class="note-card-inner" style="padding:0;overflow:hidden;">
+          <img src="assets/img/samples/geo-builder-published-site.png" alt="Screenshot of the live WordPress.com blog showing articles published by the GEO Article Builder pipeline, including titles on Aristotle's akrasia and Stoic ethics" loading="lazy" style="display:block;width:100%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="display display-md mb-2">How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">Research, then outline, then draft</h3>
+          <p class="step-desc">A researcher role gathers sources on the topic, an outline role structures the piece, and a writer role drafts the full article — three separate passes instead of one prompt trying to do everything at once.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Scored on two tracks at once</h3>
+          <p class="step-desc">A zero-token rule-based checker scans for things like filler openings and sourced numeric claims, while a separate AI critic judges harder-to-automate things like whether each section actually answers its own heading. The two scores combine into one GEO score out of 100.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">The score decides what happens next</h3>
+          <p class="step-desc">Below 60, the draft is rejected outright. Between 60 and 79, it goes back for revision — capped at 2 automatic passes so a weak draft can't loop forever. At 80 or above, it moves on to publish.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Metadata, then a live publish</h3>
+          <p class="step-desc">Schema and metadata are generated, then the article is posted directly to WordPress — via the WordPress.com REST API, since the target blog is WordPress.com-hosted rather than self-hosted. A result notification with the score and the live link goes out either way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">What the GEO score actually checks</h2>
+      <p class="body-lg mb-3">Not an official industry metric — there's no standard "GEO score" from OpenAI, Google, or Perplexity. This is a heuristic proxy for the structural traits that make a section easier for a retrieval system to extract, weighted across 7 categories.</p>
+      <div class="catalog-grid">
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="note-card-price">20 pts</span></div>
+            <h3 class="note-card-title">Answer-first structure</h3>
+            <p class="note-card-desc">Every H2 has to open with a self-contained 40–80 word answer to its own heading before any elaboration — the exact habit answer engines reward when they extract the first sentences of a section.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="note-card-price">20 pts</span></div>
+            <h3 class="note-card-title">Citation &amp; fact density</h3>
+            <p class="note-card-desc">Numeric claims need a traceable source — a link or a named attribution — checked automatically so unsourced statistics don't slip into a published article.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="note-card-price">15 pts</span></div>
+            <h3 class="note-card-title">Structure &amp; formatting</h3>
+            <p class="note-card-desc">Headings, lists, and scannability — the formatting cues that make a section easy to isolate and lift out of a longer document.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="note-card-price">15 pts</span></div>
+            <h3 class="note-card-title">Self-containment &amp; entity clarity</h3>
+            <p class="note-card-desc">Can a paragraph be understood on its own, pulled out of context, without needing the three paragraphs before it to make sense?</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="note-card-price">15 pts</span></div>
+            <h3 class="note-card-title">Language &amp; tone</h3>
+            <p class="note-card-desc">Filler openings and hedging language — "in today's fast-evolving world," "it cannot be denied" — are penalized directly rather than left to editorial taste.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <div class="note-card-meta"><span class="note-card-price">10 pts</span></div>
+            <h3 class="note-card-title">Metadata &amp; schema signals</h3>
+            <p class="note-card-desc">Structured JSON-LD is generated and embedded in the published post — a machine-readable signal about what the article actually is, alongside the human-readable text.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" id="try-it">
+    <div class="container">
+      <div class="email-capture">
+        <h3>Have a topic worth writing about?</h3>
+        <p>Try the live demo — give it a topic and see the article, the GEO score, and the reasoning behind it.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a data-cta href="#try-it" class="btn btn-sobek">Try it</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Built with n8n, publishing live to WordPress.com via OAuth2.</p>
+    <a href="https://satryapudja.site/">satryapudja.site</a>
+  </div>
+</footer>
+
+<script>
+  // Single point of change: swap this for the AWS-hosted n8n form URL once
+  // the migration in TODOS.md (CP009–CP011) is done. Everything else on
+  // this page stays the same.
+  const DEMO_URL = 'https://superhero-family-skimpily.ngrok-free.dev/form/0b2bcd55-ef53-443d-84f2-45409188a2f6';
+  document.querySelectorAll('[data-cta]').forEach((link) => { link.href = DEMO_URL; link.target = '_blank'; link.rel = 'noopener'; });
+</script>
+</body>
+</html>
