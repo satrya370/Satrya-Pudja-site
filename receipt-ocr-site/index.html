@@ -146,10 +146,8 @@
 </footer>
 
 <script>
-  // Single point of change: swap this for the AWS-hosted n8n form URL once
-  // the migration in TODOS.md (CP009–CP011) is done. Everything else on
-  // this page stays the same.
-  const DEMO_URL = 'https://n5b5vnd9-5678.asse.devtunnels.ms/form/receipt-upload';
+  // Live on AWS EC2 (n8n.satryapudja.site) as of 2026-09-10 — no longer a tunnel.
+  const DEMO_URL = 'https://n8n.satryapudja.site/form/receipt-upload';
   document.querySelectorAll('[data-cta]').forEach((link) => { link.href = DEMO_URL; link.target = '_blank'; link.rel = 'noopener'; });
 </script>
 </body>
