@@ -6,7 +6,29 @@
   var faqItems = document.querySelectorAll('.faq-item');
   var sobekButtons = document.querySelectorAll('.btn-sobek');
   var moreProjectsBtn = document.getElementById('more-projects-btn');
+  var moreProjectsLabel = document.getElementById('more-projects-btn-label');
   var moreProjects = document.getElementById('more-projects');
+
+  function openMoreProjects() {
+    if (!moreProjects || moreProjects.classList.contains('open')) return;
+    moreProjects.classList.add('open');
+    moreProjects.style.maxHeight = moreProjects.scrollHeight + 'px';
+    if (moreProjectsBtn) moreProjectsBtn.setAttribute('aria-expanded', 'true');
+    if (moreProjectsLabel) moreProjectsLabel.textContent = 'Show fewer projects';
+  }
+
+  function closeMoreProjects() {
+    if (!moreProjects || !moreProjects.classList.contains('open')) return;
+    // Set an explicit max-height first so the collapse transition has a
+    // starting point to animate from, then let it shrink to 0 on the next frame.
+    moreProjects.style.maxHeight = moreProjects.scrollHeight + 'px';
+    requestAnimationFrame(function () {
+      moreProjects.style.maxHeight = '0px';
+    });
+    moreProjects.classList.remove('open');
+    if (moreProjectsBtn) moreProjectsBtn.setAttribute('aria-expanded', 'false');
+    if (moreProjectsLabel) moreProjectsLabel.textContent = 'Show 10 more projects';
+  }
 
   function setActiveFilter(tag) {
     var buttons = filterBar ? filterBar.querySelectorAll('.filter-tag') : [];
@@ -35,18 +57,25 @@
       // Filtering by a specific niche should surface matching cards that live
       // in the collapsed "more projects" tray — otherwise the filter can look
       // like it returned nothing for niches with no featured card.
-      if (niche !== 'All' && moreProjects) {
-        moreProjects.classList.remove('hidden');
-        if (moreProjectsBtn) moreProjectsBtn.setAttribute('aria-expanded', 'true');
-      }
+      if (niche !== 'All') openMoreProjects();
     });
   }
 
   if (moreProjectsBtn && moreProjects) {
     moreProjectsBtn.addEventListener('click', function () {
-      var isOpen = moreProjects.classList.toggle('hidden') === false;
-      moreProjectsBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      moreProjectsBtn.textContent = isOpen ? 'Show fewer projects' : 'Show 10 more projects';
+      if (moreProjects.classList.contains('open')) {
+        closeMoreProjects();
+        moreProjectsBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        openMoreProjects();
+      }
+    });
+    // If the panel's own content reflows after images/fonts settle, keep an
+    // open panel's max-height in sync instead of clipping newly-tall content.
+    window.addEventListener('resize', function () {
+      if (moreProjects.classList.contains('open')) {
+        moreProjects.style.maxHeight = moreProjects.scrollHeight + 'px';
+      }
     });
   }
 
