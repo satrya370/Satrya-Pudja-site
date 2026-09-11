@@ -4,7 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Receipt to Excel — Photograph a Receipt, Get Back Structured Data</title>
-<meta name="description" content="An n8n pipeline that reads a photographed receipt with AI vision and returns a structured Excel workbook or JSON — built to handle messy real-world receipt photos, not clean scans.">
+<meta name="description" content="An n8n pipeline that reads a photographed receipt with AI vision, reconciles the totals, and appends it into the Excel workbook you already use — built to handle messy real-world receipts, not clean sample scans.">
+<link rel="canonical" href="https://satrya370.github.io/Satrya-Pudja-site/receipt-ocr-site/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://satrya370.github.io/Satrya-Pudja-site/receipt-ocr-site/">
+<meta property="og:title" content="Receipt to Excel — Photograph a Receipt, Get Back Structured Data">
+<meta property="og:description" content="An n8n pipeline that reads a photographed receipt with AI vision, reconciles the totals, and appends it into the Excel workbook you already use.">
+<meta property="og:image" content="https://satrya370.github.io/Satrya-Pudja-site/receipt-ocr-site/assets/img/og-receipt-ocr.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Receipt to Excel — Photograph a Receipt, Get Back Structured Data">
+<meta name="twitter:description" content="An n8n pipeline that reads a photographed receipt with AI vision, reconciles the totals, and appends it into the Excel workbook you already use.">
+<meta name="twitter:image" content="https://satrya370.github.io/Satrya-Pudja-site/receipt-ocr-site/assets/img/og-receipt-ocr.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <script defer src="assets/js/main.js"></script>
@@ -13,7 +25,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Receipt to Excel",
-  "description": "n8n pipeline that extracts structured data from a photographed receipt using AI vision, with a repair pass for malformed output, returning an Excel workbook or JSON.",
+  "description": "n8n pipeline that extracts structured data from a photographed receipt using AI vision, reconciles the arithmetic against the printed total, and appends the result into an existing Excel workbook or returns JSON.",
   "applicationCategory": "BusinessApplication",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
 }
@@ -28,6 +40,7 @@
     <nav class="nav-links" id="nav-links">
       <a href="../#work">Portfolio</a>
       <a href="#how-it-works">How it works</a>
+      <a href="#in-action">See it in action</a>
       <a href="#try-it">Try it</a>
     </nav>
   </div>
@@ -41,10 +54,10 @@
   <section class="template-hero">
     <div class="container">
       <h1 class="definition-lead">Photograph a receipt. Get back a spreadsheet, not a pile of paper.</h1>
-      <p class="quick-answer">Upload a photo of a real receipt — creased, angled, printed on thermal paper that's already fading — and this pipeline reads it with AI vision, validates the result, and hands you back a structured Excel workbook or JSON. Built for the receipts people actually have, not clean sample scans.</p>
+      <p class="quick-answer">Upload a photo of a real receipt — creased, angled, printed on thermal paper that's already fading — and this pipeline reads it with AI vision, checks the math against the printed total, and hands you back a structured Excel workbook or JSON. Built for the receipts people actually have, not clean sample scans.</p>
       <div class="cta-row">
         <a data-cta href="#try-it" class="btn btn-sobek">Try it</a>
-        <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
+        <a href="#in-action" class="btn btn-ghost">See it in action</a>
       </div>
     </div>
   </section>
@@ -75,6 +88,28 @@
     </div>
   </div>
 
+  <section class="section" id="in-action">
+    <div class="container">
+      <h2 class="display display-md mb-2">See it in action</h2>
+      <p class="body-lg mb-3">A test receipt going in, and the workbook that came back. This one wasn't run through a messy phone photo — it's a controlled input used to verify a specific, harder behavior: matching the column layout of a workbook that already had its own format, not just building a fresh one.</p>
+      <div class="template-layout">
+        <div>
+          <p class="mono-label text-carbon mb-2">Input — test receipt</p>
+          <div class="demo-embed">
+            <img src="assets/img/samples/sample-receipt-input.png" alt="Test receipt from INDOMARET: Kopi ABC 200gr x2 Rp 30.000, Roti Tawar x1 Rp 18.000, Air Mineral x3 Rp 12.000, subtotal Rp 60.000, pajak Rp 6.600, total Rp 66.600, paid by QRIS" loading="lazy" style="display:block;width:100%;">
+          </div>
+        </div>
+        <div>
+          <p class="mono-label text-carbon mb-2">Output — appended into an existing workbook</p>
+          <div class="demo-embed">
+            <img src="assets/img/samples/appended-workbook.png" alt="Google Sheets screenshot: rows 2-4 are pre-existing manual entries (Toko A/B/C), rows 5-7 are the new receipt appended by the pipeline, matching the same Tanggal/Toko/No Struk/Barang/Qty/Harga/Total columns" loading="lazy" style="display:block;width:100%;">
+          </div>
+        </div>
+      </div>
+      <p class="body-sm mt-3" style="color:var(--carbon-gray)">Rows 2–4 already existed in this workbook, typed in manually with its own column headers. Rows 5–7 are what the pipeline added after reading the receipt — same columns, same layout, no new sheet, no reformatting of the old rows.</p>
+    </div>
+  </section>
+
   <section class="section" id="how-it-works">
     <div class="container">
       <h2 class="display display-md mb-2">How it works</h2>
@@ -85,15 +120,56 @@
         </div>
         <div class="step">
           <h3 class="step-title">AI vision reads it</h3>
-          <p class="step-desc">Vendor, line items, and totals are extracted directly from the image — no manual typing, no template matching against a fixed receipt layout.</p>
+          <p class="step-desc">Gemini 2.5 Flash Lite extracts vendor, line items, and totals directly from the image — no manual typing, no template matching against a fixed receipt layout.</p>
         </div>
         <div class="step">
-          <h3 class="step-title">A repair pass checks the output</h3>
-          <p class="step-desc">If the first extraction comes back malformed, a second pass repairs it before anything is returned — the same fail-closed pattern behind every pipeline on this site.</p>
+          <h3 class="step-title">The math gets checked</h3>
+          <p class="step-desc">Subtotal, discount, tax, service charge, and rounding are reconciled against the printed total. A mismatch doesn't get hidden — it's flagged on the Validasi sheet instead of silently accepted.</p>
         </div>
         <div class="step">
-          <h3 class="step-title">Excel or JSON comes back</h3>
-          <p class="step-desc">A downloadable workbook for a person, or structured JSON if you're wiring this into something else.</p>
+          <h3 class="step-title">A repair pass fixes malformed output</h3>
+          <p class="step-desc">If the first extraction comes back as broken JSON, GPT-OSS 120B repairs it before anything moves forward — the same fail-closed pattern behind every pipeline on this site.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Duplicates get caught</h3>
+          <p class="step-desc">Each receipt gets a fingerprint from its merchant, date, receipt number, and total. If that fingerprint is already in the workbook, the same receipt doesn't get added twice.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">If a workbook was uploaded, it adapts to it</h3>
+          <p class="step-desc">The pipeline inspects the uploaded workbook's existing columns and maps the new receipt onto them — the behavior shown above — instead of forcing its own format on top of yours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">What's in the workbook</h2>
+      <p class="body-lg mb-3">A standalone run (no existing workbook uploaded) produces four sheets:</p>
+      <div class="catalog-grid">
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Ringkasan</h3>
+            <p class="note-card-desc">One row per receipt — merchant, date, subtotal, tax, service charge, discount, and total.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Detail Item</h3>
+            <p class="note-card-desc">Every line item that was on the receipt — name, quantity, unit price, and line total.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Validasi</h3>
+            <p class="note-card-desc">The arithmetic check for each receipt — printed total vs. calculated total, and the difference if they don't match.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">_receipt_bridge</h3>
+            <p class="note-card-desc">A hidden sheet that stores each receipt's fingerprint — how duplicate detection and adaptive append actually work behind the scenes.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -121,6 +197,38 @@
             <p class="note-card-desc">Returns the raw extraction as JSON instead of a workbook — useful for checking exactly what the model saw before trusting it.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">What it doesn't do yet</h2>
+      <ul class="feature-list">
+        <li>One receipt per submission — batch upload for a stack of receipts at once is planned, not built.</li>
+        <li>No split-bill support yet — it extracts and totals a receipt, it doesn't divide it between people.</li>
+        <li>10 MB limit on the photo, 15 MB on an uploaded workbook.</li>
+        <li>Best results on itemized receipts with printed totals — a receipt with no visible total to reconcile against still extracts, but skips the arithmetic check.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Under the hood</h2>
+      <div class="skill-chips mb-3">
+        <span class="skill-chip">n8n</span>
+        <span class="skill-chip">OpenRouter</span>
+        <span class="skill-chip">Gemini 2.5 Flash Lite</span>
+        <span class="skill-chip">GPT-OSS 120B</span>
+        <span class="skill-chip">xlsx</span>
+        <span class="skill-chip">AWS EC2</span>
+        <span class="skill-chip">Docker</span>
+        <span class="skill-chip">nginx</span>
+      </div>
+      <p class="body-lg">Both workflows — the public form and the OCR processor — are in a public repo, exported straight from n8n with credentials stripped out.</p>
+      <div class="link-row">
+        <a href="https://github.com/satrya370/ocr-recipt-n8n" target="_blank" rel="noopener">View the workflow source on GitHub</a>
       </div>
     </div>
   </section>
