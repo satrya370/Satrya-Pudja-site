@@ -18,5 +18,8 @@ Thumbs.db
 !**/assets/img/**
 !**/samples/**
 Credential_information.md
+
+# Public resume — deliberately exempted from the *.pdf rule above
+!assets/Satrya-Pudja-CV.pdf
 "Worksheet Klien a.n I Gede Satrya Negara Pudja.docx"
 "Worksheet Klien a.n I Gede Satrya Negara Pudja.pdf"

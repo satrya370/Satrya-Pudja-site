@@ -5,6 +5,8 @@
   var catalogCards = document.querySelectorAll('[data-niche]');
   var faqItems = document.querySelectorAll('.faq-item');
   var sobekButtons = document.querySelectorAll('.btn-sobek');
+  var moreProjectsBtn = document.getElementById('more-projects-btn');
+  var moreProjects = document.getElementById('more-projects');
 
   function setActiveFilter(tag) {
     var buttons = filterBar ? filterBar.querySelectorAll('.filter-tag') : [];
@@ -30,6 +32,21 @@
       var niche = tag.textContent.trim();
       setActiveFilter(niche);
       filterCards(niche);
+      // Filtering by a specific niche should surface matching cards that live
+      // in the collapsed "more projects" tray — otherwise the filter can look
+      // like it returned nothing for niches with no featured card.
+      if (niche !== 'All' && moreProjects) {
+        moreProjects.classList.remove('hidden');
+        if (moreProjectsBtn) moreProjectsBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
+  if (moreProjectsBtn && moreProjects) {
+    moreProjectsBtn.addEventListener('click', function () {
+      var isOpen = moreProjects.classList.toggle('hidden') === false;
+      moreProjectsBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      moreProjectsBtn.textContent = isOpen ? 'Show fewer projects' : 'Show 10 more projects';
     });
   }
 

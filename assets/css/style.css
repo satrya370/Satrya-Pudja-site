@@ -892,6 +892,12 @@ ul, ol { list-style: none; }
 
 .hidden { display: none !important; }
 
+.more-projects-toggle {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
 /* Focus */
 :focus-visible {
   outline: 2px solid var(--duplicate-yellow);

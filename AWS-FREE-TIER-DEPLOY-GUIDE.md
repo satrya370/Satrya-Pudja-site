@@ -36,7 +36,7 @@ folders) stays local — not part of this deployment (`PRP.md` D5).
                                       │
                                       ▼
                          ┌───────────────────────────────┐
- n8n.satryapudja.site ──▶│  EC2 t3.micro + Caddy (TLS)   │
+ n8n.satryapudja.site ──▶│  EC2 t3.small + Caddy (TLS)   │
  api.satryapudja.site ──▶│                                │
                          │  Docker Compose on one box:   │
                          │   - n8n (custom image + Chromium, for PDF nodes)
