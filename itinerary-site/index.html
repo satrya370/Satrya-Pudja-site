@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Itinerary Brochure Engine — Automated Travel Itinerary Brochures (HTML + PDF)</title>
 <meta name="description" content="Turn a short trip brief into a finished travel itinerary brochure — HTML + PDF — for half-day, full-day, multi-day, or destination-guide trips. Automated QA rejects anything that doesn't meet the standard.">
+<link rel="canonical" href="https://satrya370.github.io/Satrya-Pudja-site/itinerary-site/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://satrya370.github.io/Satrya-Pudja-site/itinerary-site/">
+<meta property="og:title" content="Itinerary Brochure Engine — Short brief in, finished travel brochure out">
+<meta property="og:description" content="An n8n pipeline that turns a trip brief into a validated HTML and PDF travel brochure, with route planning, venue checks, travel-time guards, and automated QA.">
+<meta property="og:image" content="https://satrya370.github.io/Satrya-Pudja-site/itinerary-site/assets/img/samples/full-day.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Itinerary Brochure Engine — Short brief in, finished travel brochure out">
+<meta name="twitter:description" content="A validated HTML + PDF travel brochure generated from a short trip brief.">
+<meta name="twitter:image" content="https://satrya370.github.io/Satrya-Pudja-site/itinerary-site/assets/img/samples/full-day.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <script defer src="assets/js/main.js"></script>
@@ -88,6 +98,9 @@
     <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
     <nav class="nav-links" id="nav-links">
       <a href="../#work">Portfolio</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#in-action">See it in action</a>
+      <a href="#try-it">Try it</a>
       <a href="#faq">FAQ</a>
     </nav>
   </div>
@@ -103,8 +116,8 @@
       <h1 class="definition-lead">A digital travel brochure, assembled automatically from your short brief.</h1>
       <p class="quick-answer">Fill in one form: destination, trip type, and guest preferences. Out comes a matched pair of brochures — an HTML page for guests to open on their phone, and a full-colour PDF — sent to the agent's email once ready. Output language is detected automatically from the brief.</p>
       <div class="cta-row">
-        <a href="#try-it" class="btn btn-sobek">Try it</a>
-        <a href="#faq" class="btn btn-ghost">See FAQ</a>
+        <a data-cta href="#try-it" class="btn btn-sobek">Try it live</a>
+        <a href="#in-action" class="btn btn-ghost">See it in action</a>
       </div>
     </div>
   </section>
@@ -135,21 +148,25 @@
     </div>
   </div>
 
-  <section class="section">
+  <section class="section" id="in-action">
     <div class="container">
-      <h2 class="display display-sm mb-2">What's inside</h2>
-      <ul class="feature-list">
-        <li>Visit flow rendered as a vertical connected timeline (scheduled modes) or grouped spot cards (destination guide) — never a flat list that gets unreadable once there are more than a few stops</li>
-        <li>An automatic travel-time guard — rejects a route that's physically impossible to complete in the trip's duration, with a different active-hours cap per mode</li>
-        <li>An automated QA gate that rejects monetary values, opening-hour or ticket-price claims, star ratings, and other OTA-product-page tells before a brochure is ever considered finished</li>
-        <li>Brochure colour palette matched automatically to destination type — beach, mountain, city, cultural, nature, desert, or mixed</li>
-        <li>Region-level destination photography with attribution, or a themed gradient when no photo clears the confidence bar — never the wrong photo</li>
-        <li>Trips longer than 7 days are automatically condensed into date ranges, not repeated as 14 near-identical day cards</li>
-      </ul>
+      <h2 class="display display-md mb-2">See it in action</h2>
+      <p class="body-lg mb-3">The same renderer produces a different brochure shape for each trip mode. These are real generated outputs from the pipeline: a readable phone-first HTML page with a matching printable PDF behind it.</p>
+      <div class="template-layout">
+        <div>
+          <p class="mono-label text-carbon mb-2">Scheduled route — full-day</p>
+          <div class="demo-embed"><img src="assets/img/samples/full-day.png" alt="Generated full-day itinerary brochure showing a connected timeline route in Ubud" loading="lazy" style="display:block;width:100%;"></div>
+        </div>
+        <div>
+          <p class="mono-label text-carbon mb-2">Open-ended route — destination guide</p>
+          <div class="demo-embed"><img src="assets/img/samples/destination-guide.png" alt="Generated destination guide showing grouped spot cards without fixed visit times" loading="lazy" style="display:block;width:100%;"></div>
+        </div>
+      </div>
+      <p class="body-sm mt-3" style="color:var(--carbon-gray)">Scheduled modes use a connected timeline with travel notes. Destination guides use ordered spot cards grouped by area, so the output stays useful even when guests choose their own pace.</p>
     </div>
   </section>
 
-  <section class="section-sm">
+  <section class="section-sm" id="how-it-works">
     <div class="container">
       <h2 class="display display-sm mb-3">Four modes, one form</h2>
       <div class="catalog-grid">
@@ -198,6 +215,14 @@
           <p class="step-desc">A trip skeleton is built, venues are checked, and travel time is verified — all before any of it is written into final copy.</p>
         </div>
         <div class="step">
+          <h3 class="step-title">The copy gets researched</h3>
+          <p class="step-desc">High-risk venues are checked, route details are reconciled, and the final copy is written from the structured plan rather than from an unbounded prompt.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">The route is tested again</h3>
+          <p class="step-desc">A travel-time guard rejects physically impossible days and can send a repair pass back through the route before the brochure is assembled.</p>
+        </div>
+        <div class="step">
           <h3 class="step-title">Automated QA filters the result</h3>
           <p class="step-desc">Output containing prices, opening-hour claims, or OTA-page tells is rejected and repaired before moving on.</p>
         </div>
@@ -211,6 +236,18 @@
 
   <section class="section-sm">
     <div class="container">
+      <h2 class="display display-sm mb-3">What the pipeline protects</h2>
+      <div class="catalog-grid">
+        <div class="note-card"><div class="note-card-inner"><h3 class="note-card-title">Route integrity</h3><p class="note-card-desc">Ordered anchors, day labels, active-hour caps, and realistic regional travel speeds are checked before final copy.</p></div></div>
+        <div class="note-card"><div class="note-card-inner"><h3 class="note-card-title">Venue confidence</h3><p class="note-card-desc">High-risk venues are verified and reconciled instead of being presented as fact when the source data is uncertain.</p></div></div>
+        <div class="note-card"><div class="note-card-inner"><h3 class="note-card-title">Safe brochure language</h3><p class="note-card-desc">The QA gate blocks prices, opening-hour claims, ratings, scarcity language, and booking-page patterns.</p></div></div>
+        <div class="note-card"><div class="note-card-inner"><h3 class="note-card-title">Photo fallback</h3><p class="note-card-desc">Region-level photography is attributed, and the renderer falls back to a destination palette when confidence is too low.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
       <h2 class="display display-sm mb-3">What this tool doesn't do</h2>
       <ul class="feature-list">
         <li>Doesn't show prices, quotes, or any monetary value whatsoever</li>
@@ -218,7 +255,26 @@
         <li>Doesn't add star ratings, review counts, scarcity claims, or a book-now button like an OTA product page</li>
         <li>Doesn't book anything — this is a guidance brochure, not a booking engine</li>
         <li>Never presents a photo as "this is the actual photo" of one specific spot — photography is always region-level, with attribution</li>
+        <li>The live demo currently runs through a Microsoft Dev Tunnel and may be unavailable when the local host is offline or the tunnel expires</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Under the hood</h2>
+      <div class="skill-chips mb-3">
+        <span class="skill-chip">n8n</span>
+        <span class="skill-chip">OpenRouter</span>
+        <span class="skill-chip">GPT-OSS 120B</span>
+        <span class="skill-chip">Code nodes</span>
+        <span class="skill-chip">HTML renderer</span>
+        <span class="skill-chip">PDF output</span>
+        <span class="skill-chip">Automated QA</span>
+        <span class="skill-chip">Microsoft Dev Tunnel</span>
+      </div>
+      <p class="body-lg">The workflow is built as a staged n8n pipeline: deterministic input validation first, AI-assisted planning and copy second, then deterministic travel-time, photo, QA, and render gates before delivery.</p>
+      <p class="body-lg">The public form is a safe demo surface. Credentials and internal workflow configuration stay on the n8n instance; the portfolio page only links to the form endpoint.</p>
     </div>
   </section>
 
@@ -279,11 +335,8 @@
     <div class="container">
       <div class="email-capture">
         <h3>Try the Itinerary Brochure Engine</h3>
-        <p>Free. The full self-serve form is still being finished — leave your email and you'll be notified the moment it's live.</p>
-        <form class="email-capture-form" action="mailto:hello@satryapudja.site" method="post" enctype="text/plain">
-          <input type="email" name="email" placeholder="you@youragency.com" required>
-          <button type="submit" class="btn btn-sobek">Notify me</button>
-        </form>
+        <p>Submit a trip brief and see the intake flow that powers the brochure generator.</p>
+        <div class="cta-row" style="justify-content:center"><a data-cta href="#try-it" class="btn btn-sobek">Open the live form</a></div>
       </div>
     </div>
   </section>
@@ -295,5 +348,9 @@
     <a href="../">satryapudja.site</a>
   </div>
 </footer>
+<script>
+  const DEMO_URL = 'https://n7s5sxw6-5678.asse.devtunnels.ms/form/itinerary-brochure-intake';
+  document.querySelectorAll('[data-cta]').forEach((link) => { link.href = DEMO_URL; link.target = '_blank'; link.rel = 'noopener'; });
+</script>
 </body>
 </html>
