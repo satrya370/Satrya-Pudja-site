@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IG Content Builder — Topic Brief In, Instagram Carousel Out</title>
+<meta name="description" content="An n8n pipeline that turns a short topic brief into a researched, rendered Instagram carousel — brief, live web research, slide planning, rendering, and captioning, run end to end.">
+<link rel="canonical" href="https://satrya370.github.io/Satrya-Pudja-site/ig-content-builder-site/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://satrya370.github.io/Satrya-Pudja-site/ig-content-builder-site/">
+<meta property="og:title" content="IG Content Builder — Topic Brief In, Instagram Carousel Out">
+<meta property="og:description" content="An n8n pipeline that turns a short topic brief into a researched, rendered Instagram carousel — brief, live web research, slide planning, rendering, and captioning, run end to end.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IG Content Builder — Topic Brief In, Instagram Carousel Out">
+<meta name="twitter:description" content="An n8n pipeline that turns a short topic brief into a researched, rendered Instagram carousel.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script defer src="assets/js/main.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "IG Content Builder",
+  "description": "n8n pipeline that turns a topic brief into a researched Instagram carousel: AI safety-guards the topic, researches it with live web search, plans and writes slide copy, renders 1080x1350 PNGs with Puppeteer, and writes a caption.",
+  "applicationCategory": "BusinessApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../" class="brand">Satrya Pudja</a>
+    <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+    <nav class="nav-links" id="nav-links">
+      <a href="../#work">Portfolio</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#in-action">See it in action</a>
+      <a href="#try-it">Try it</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <a href="../#work" class="back-link">Back to portfolio</a>
+  </div>
+
+  <section class="template-hero">
+    <div class="container">
+      <h1 class="definition-lead">Give it a topic. Get back a researched Instagram carousel.</h1>
+      <p class="quick-answer">Type a topic — a title, or just a rough idea — and this pipeline safety-checks it, researches it with live web search, plans a 7-slide carousel across one of six visual templates, renders each slide as a real PNG with a headless browser, and writes the caption. No manual research, no manual layout.</p>
+      <div class="cta-row">
+        <a data-cta href="#try-it" class="btn btn-sobek">Try it</a>
+        <a href="#in-action" class="btn btn-ghost">See it in action</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="highlight-pill">
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">💡</span>
+        <span>
+          <span class="highlight-pill-value">One topic in</span>
+          <span class="highlight-pill-label">A title is enough — detail, keywords, template, and research angle are all optional</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🖼️</span>
+        <span>
+          <span class="highlight-pill-value">7-slide carousel out</span>
+          <span class="highlight-pill-label">Rendered as 1080×1350 PNGs, plus a caption and hashtags — emailed to you</span>
+        </span>
+      </div>
+      <div class="highlight-pill-item">
+        <span class="highlight-pill-icon" aria-hidden="true">🛡️</span>
+        <span>
+          <span class="highlight-pill-value">AI-guarded, quota-limited</span>
+          <span class="highlight-pill-label">A safety-check pass runs before any research, and every email gets 5 runs a day</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="in-action">
+    <div class="container">
+      <h2 class="display display-md mb-2">See it in action</h2>
+      <p class="body-lg mb-3">A real carousel from a real run of this deployment — topic: <em>a checklist for verifying a fresh n8n deployment on EC2</em>. These three PNGs (intro, one of the step slides, and the closing slide) are exactly what the pipeline handed back, not mockups.</p>
+      <div class="template-layout">
+        <div>
+          <p class="mono-label text-carbon mb-2">Slide 1 — intro</p>
+          <div class="demo-embed">
+            <img src="assets/img/samples/sample-slide-intro.png" alt="Instagram carousel intro slide, tips-content template: headline 'VERIFY', subhead 'Fresh EC2 n8n deployments often hide silent failures that only surface under load'" loading="lazy" style="display:block;width:100%;">
+          </div>
+        </div>
+        <div>
+          <p class="mono-label text-carbon mb-2">Slide 3 — a step in the checklist</p>
+          <div class="demo-embed">
+            <img src="assets/img/samples/sample-slide-step.png" alt="Instagram carousel step slide: 'Secure credentials via AWS Secrets Manager' — attach an instance role with secretsmanager:ListSecrets, BatchGetSecretValue, and GetSecretValue so secrets stay out of the compose file" loading="lazy" style="display:block;width:100%;">
+          </div>
+        </div>
+        <div>
+          <p class="mono-label text-carbon mb-2">Slide 7 — closing</p>
+          <div class="demo-embed">
+            <img src="assets/img/samples/sample-slide-closing.png" alt="Instagram carousel closing slide: 'FOLLOW.' with a like-and-save call to action and account watermark" loading="lazy" style="display:block;width:100%;">
+          </div>
+        </div>
+      </div>
+      <p class="body-sm mt-3" style="color:var(--carbon-gray)">This run also wrote a row to a Google Sheet content log, emailed the finished carousel, and — since the safety guard and daily quota both passed — never touched Telegram's error-alert path.</p>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="display display-md mb-2">How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">Brief comes in</h3>
+          <p class="step-desc">A form: topic, optional detail and keywords, a visual template (or Auto), a research lens, language, and how many slides to aim for. Only an email is required.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">AI safety guard checks the topic first</h3>
+          <p class="step-desc">Before any research runs — and before any tokens get spent — a classifier call decides whether the topic is safe for a public demo. Unsafe or empty topics are rejected here, not after a full research pass.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Live web research</h3>
+          <p class="step-desc">A research agent with a real web-search tool call gathers sources, quotes, and data points for the chosen angle — statistics, a case study, common mistakes, or seven other research lenses — and scores each source for recency and authority.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Brief and slide plan get written</h3>
+          <p class="step-desc">The research gets turned into a slide-by-slide plan: a hook and headline for the intro, one step per "isi" slide, a closing slide — mapped onto one of six visual templates (tips, code, visual, editorial, momentum, or a general template).</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Every slide gets rendered as a real image</h3>
+          <p class="step-desc">A headless Chromium instance loads each slide's HTML/CSS directly (no temp files) and screenshots it at 1080×1350 — Instagram's carousel size — one PNG per slide.</p>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Caption, log, and delivery</h3>
+          <p class="step-desc">A caption and hashtag pass writes the post copy, the run gets logged to a Google Sheet, and the finished carousel is emailed to the address on the form. A failed run alerts a Telegram channel instead of failing silently.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Six visual templates</h2>
+      <div class="catalog-grid">
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Tips</h3>
+            <p class="note-card-desc">Numbered step slides with a tag and explanation — the template used in the sample above.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Code</h3>
+            <p class="note-card-desc">Built for technical topics — code-flavored layout for dev-audience content.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Visual</h3>
+            <p class="note-card-desc">Image-forward layout for topics that lean on a strong visual rather than dense text.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Editorial</h3>
+            <p class="note-card-desc">A more magazine-style layout for opinion or analysis-driven topics.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Momentum</h3>
+            <p class="note-card-desc">Built for trend or news-style topics — what's happening and why it matters now.</p>
+          </div>
+        </div>
+        <div class="note-card">
+          <div class="note-card-inner">
+            <h3 class="note-card-title">Auto</h3>
+            <p class="note-card-desc">Leave the template unset and the planner picks one based on the topic and research.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">What it doesn't do yet</h2>
+      <ul class="feature-list">
+        <li>No direct Instagram posting — you get the PNGs and caption back by email, not an auto-published post.</li>
+        <li>5 runs per day per email address on the public demo, to keep AI research and rendering costs bounded.</li>
+        <li>Public-demo topics go through an AI safety check first — off-scope or unsafe topics are declined before research starts.</li>
+        <li>Custom image upload isn't wired into the public form yet — image handling is Auto-generate, a URL you supply, or skipped.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Under the hood</h2>
+      <div class="skill-chips mb-3">
+        <span class="skill-chip">n8n</span>
+        <span class="skill-chip">OpenRouter</span>
+        <span class="skill-chip">KobiLLM</span>
+        <span class="skill-chip">Web Search Tool Calling</span>
+        <span class="skill-chip">Puppeteer</span>
+        <span class="skill-chip">Chromium (sidecar container)</span>
+        <span class="skill-chip">Google Sheets</span>
+        <span class="skill-chip">Gmail</span>
+        <span class="skill-chip">Telegram</span>
+        <span class="skill-chip">AWS EC2</span>
+        <span class="skill-chip">Docker Compose</span>
+        <span class="skill-chip">Caddy</span>
+      </div>
+      <p class="body-lg">74 nodes, running on the same Docker Compose stack on AWS EC2 as the other demos on this site — n8n and a separate Chromium container behind Caddy. Puppeteer connects to Chromium over a WebSocket rather than launching a local browser, since the two run in separate containers.</p>
+      <p class="body-lg">Exported straight from n8n with every credential stripped out, in a public repo.</p>
+      <div class="link-row">
+        <a href="https://github.com/satrya370/IG-Content-Builder-Workflow-N8n" target="_blank" rel="noopener">View the workflow source on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" id="try-it">
+    <div class="container">
+      <div class="email-capture">
+        <h3>Have a topic in mind?</h3>
+        <p>Try the live demo — give it a topic and see the carousel it comes back with.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a data-cta href="#try-it" class="btn btn-sobek">Try it</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Built with n8n, OpenRouter, KobiLLM, and Puppeteer.</p>
+    <a href="../">satryapudja.site</a>
+  </div>
+</footer>
+
+<script>
+  const DEMO_URL = 'https://n8n.satryapudja.site/form/cfb2ae26-8b9b-4e7a-8adc-d99818683a92';
+  document.querySelectorAll('[data-cta]').forEach((link) => { link.href = DEMO_URL; link.target = '_blank'; link.rel = 'noopener'; });
+</script>
+</body>
+</html>
