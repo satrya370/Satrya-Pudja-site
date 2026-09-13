@@ -3,6 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="canonical" href="https://satrya370.github.io/Satrya-Pudja-site/swot-site/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://satrya370.github.io/Satrya-Pudja-site/swot-site/">
+<meta property="og:title" content="SWOT Generator — A decision-ready SWOT &amp; TOWS report">
+<meta property="og:description" content="Describe a business, product, or project and get a grounded SWOT analysis, TOWS strategies, and priority actions as a formatted report.">
+<meta property="og:image" content="https://satrya370.github.io/Satrya-Pudja-site/swot-site/assets/img/samples/swot-footage.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SWOT Generator — A decision-ready SWOT &amp; TOWS report">
+<meta name="twitter:description" content="A grounded SWOT analysis with TOWS strategies and priority actions, generated from the situation you describe.">
+<meta name="twitter:image" content="https://satrya370.github.io/Satrya-Pudja-site/swot-site/assets/img/samples/swot-footage.png">
 <title>SWOT Generator — Turn a Business Description into a Full SWOT & TOWS Report</title>
 <meta name="description" content="An n8n pipeline that takes a business, product, or project description and returns a full SWOT analysis with TOWS strategies and priority actions as a formatted document — grounded in what you actually tell it, with optional live web research.">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -28,6 +38,7 @@
     <nav class="nav-links" id="nav-links">
       <a href="../#work">Portfolio</a>
       <a href="#how-it-works">How it works</a>
+      <a href="#in-action">See it in action</a>
       <a href="#try-it">Try it</a>
     </nav>
   </div>
@@ -44,7 +55,7 @@
       <p class="quick-answer">Most SWOT exercises stall at four bullet lists that don't lead anywhere. This pipeline asks for the actual decision behind the analysis first, then builds strengths, weaknesses, opportunities, and threats — plus SO/WO/ST/WT strategies and priority actions — as a formatted report you can hand to someone else.</p>
       <div class="cta-row">
         <a data-cta href="#try-it" class="btn btn-sobek">Try it</a>
-        <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
+        <a href="#in-action" class="btn btn-ghost">See it in action</a>
       </div>
     </div>
   </section>
@@ -75,7 +86,7 @@
     </div>
   </div>
 
-  <section class="section-sm">
+  <section class="section-sm" id="in-action">
     <div class="container">
       <h2 class="display display-sm mb-3">Real output, not a mockup</h2>
       <p class="body-lg mb-3">A page from an actual generated report — a five-year-old herbal shop in Yogyakarta weighing whether to open a second location.</p>
@@ -137,6 +148,49 @@
     </div>
   </section>
 
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">What the pipeline protects</h2>
+      <div class="catalog-grid">
+        <div class="note-card"><div class="note-card-inner"><h3 class="note-card-title">Decision alignment</h3><p class="note-card-desc">The objective comes first, so the analysis answers a concrete decision instead of producing four disconnected lists.</p></div></div>
+        <div class="note-card"><div class="note-card-inner"><h3 class="note-card-title">Evidence traceability</h3><p class="note-card-desc">Each factor carries its basis and source context, making it clear what came from you, research, or an explicit assumption.</p></div></div>
+        <div class="note-card"><div class="note-card-inner"><h3 class="note-card-title">Fail-closed validation</h3><p class="note-card-desc">Input and AI responses are checked before the next stage runs, so malformed or unsafe content does not silently become a report.</p></div></div>
+        <div class="note-card"><div class="note-card-inner"><h3 class="note-card-title">Actionable delivery</h3><p class="note-card-desc">The final document includes TOWS combinations and ranked priority actions, not just observations to interpret later.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">What it doesn't do yet</h2>
+      <ul class="feature-list">
+        <li>It does not replace founder, team, or domain judgment; the report is a structured decision aid.</li>
+        <li>External research is optional. User Information Only mode keeps the analysis grounded strictly in the submitted context.</li>
+        <li>It does not claim certainty where the input or research evidence is incomplete; limitations are stated in the report.</li>
+        <li>The live demo currently runs through a Microsoft Dev Tunnel and may be unavailable when the local n8n host is offline or the tunnel expires.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <h2 class="display display-sm mb-3">Under the hood</h2>
+      <div class="skill-chips mb-3">
+        <span class="skill-chip">n8n</span>
+        <span class="skill-chip">Form Trigger</span>
+        <span class="skill-chip">Input validation</span>
+        <span class="skill-chip">Groq</span>
+        <span class="skill-chip">OpenRouter</span>
+        <span class="skill-chip">Web research</span>
+        <span class="skill-chip">TOWS synthesis</span>
+        <span class="skill-chip">DOCX generation</span>
+        <span class="skill-chip">Microsoft Dev Tunnel</span>
+      </div>
+      <p class="body-lg">The workflow is staged so each handoff is explicit: form input, safety guard, quality check, optional research, SWOT analysis, TOWS strategy generation, and formatted DOCX delivery.</p>
+      <p class="body-lg">The public page only exposes the form. Credentials, prompts, and internal workflow configuration remain on the n8n instance.</p>
+    </div>
+  </section>
+
   <section class="section-sm" id="try-it">
     <div class="container">
       <div class="email-capture">
@@ -158,10 +212,7 @@
 </footer>
 
 <script>
-  // Single point of change: swap this for the AWS-hosted n8n form URL once
-  // the migration in TODOS.md (CP009–CP011) is done. Everything else on
-  // this page stays the same.
-  const DEMO_URL = 'https://superhero-family-skimpily.ngrok-free.dev/form/swot-generator';
+  const DEMO_URL = 'https://7jg9qwgr-5678.asse.devtunnels.ms/form/swot-generator';
   document.querySelectorAll('[data-cta]').forEach((link) => { link.href = DEMO_URL; link.target = '_blank'; link.rel = 'noopener'; });
 </script>
 </body>
