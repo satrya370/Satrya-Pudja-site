@@ -7,27 +7,29 @@
   var sobekButtons = document.querySelectorAll('.btn-sobek');
   var moreProjectsBtn = document.getElementById('more-projects-btn');
   var moreProjectsLabel = document.getElementById('more-projects-btn-label');
-  var moreProjects = document.getElementById('more-projects');
 
-  function openMoreProjects() {
-    if (!moreProjects || moreProjects.classList.contains('open')) return;
-    moreProjects.classList.add('open');
-    moreProjects.style.maxHeight = moreProjects.scrollHeight + 'px';
-    if (moreProjectsBtn) moreProjectsBtn.setAttribute('aria-expanded', 'true');
-    if (moreProjectsLabel) moreProjectsLabel.textContent = 'Show fewer projects';
+  // All cards live in a single grid so filtered results reflow together
+  // (e.g. 3-across-then-1) instead of splitting across a "featured" grid
+  // and a separate "more projects" grid. The "more" cards (marked
+  // .more-card) stay collapsed behind a toggle only while niche is "All";
+  // picking a specific niche always reveals every match.
+  var currentNiche = 'All';
+  var moreExpanded = false;
+
+  function updateCardVisibility() {
+    catalogCards.forEach(function (card) {
+      var nicheOk = currentNiche === 'All' || card.getAttribute('data-niche') === currentNiche;
+      var isMoreCard = card.classList.contains('more-card');
+      var moreOk = !isMoreCard || moreExpanded || currentNiche !== 'All';
+      card.classList.toggle('hidden', !(nicheOk && moreOk));
+    });
   }
 
-  function closeMoreProjects() {
-    if (!moreProjects || !moreProjects.classList.contains('open')) return;
-    // Set an explicit max-height first so the collapse transition has a
-    // starting point to animate from, then let it shrink to 0 on the next frame.
-    moreProjects.style.maxHeight = moreProjects.scrollHeight + 'px';
-    requestAnimationFrame(function () {
-      moreProjects.style.maxHeight = '0px';
-    });
-    moreProjects.classList.remove('open');
-    if (moreProjectsBtn) moreProjectsBtn.setAttribute('aria-expanded', 'false');
-    if (moreProjectsLabel) moreProjectsLabel.textContent = 'Show 10 more projects';
+  function setMoreExpanded(expanded) {
+    moreExpanded = expanded;
+    if (moreProjectsBtn) moreProjectsBtn.setAttribute('aria-expanded', String(expanded));
+    if (moreProjectsLabel) moreProjectsLabel.textContent = expanded ? 'Show fewer projects' : 'Show 11 more projects';
+    updateCardVisibility();
   }
 
   function setActiveFilter(tag) {
@@ -37,44 +39,30 @@
     });
   }
 
-  function filterCards(niche) {
-    catalogCards.forEach(function (card) {
-      if (niche === 'All' || card.getAttribute('data-niche') === niche) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  }
-
   if (filterBar) {
     filterBar.addEventListener('click', function (e) {
       var tag = e.target.closest('.filter-tag');
       if (!tag) return;
-      var niche = tag.textContent.trim();
-      setActiveFilter(niche);
-      filterCards(niche);
+      currentNiche = tag.textContent.trim();
+      setActiveFilter(currentNiche);
       // Filtering by a specific niche should surface matching cards that live
       // in the collapsed "more projects" tray — otherwise the filter can look
       // like it returned nothing for niches with no featured card.
-      if (niche !== 'All') openMoreProjects();
+      if (currentNiche !== 'All' && !moreExpanded) {
+        setMoreExpanded(true);
+      } else {
+        updateCardVisibility();
+      }
     });
   }
 
-  if (moreProjectsBtn && moreProjects) {
+  if (moreProjectsBtn) {
     moreProjectsBtn.addEventListener('click', function () {
-      if (moreProjects.classList.contains('open')) {
-        closeMoreProjects();
+      if (moreExpanded) {
+        setMoreExpanded(false);
         moreProjectsBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
-        openMoreProjects();
-      }
-    });
-    // If the panel's own content reflows after images/fonts settle, keep an
-    // open panel's max-height in sync instead of clipping newly-tall content.
-    window.addEventListener('resize', function () {
-      if (moreProjects.classList.contains('open')) {
-        moreProjects.style.maxHeight = moreProjects.scrollHeight + 'px';
+        setMoreExpanded(true);
       }
     });
   }

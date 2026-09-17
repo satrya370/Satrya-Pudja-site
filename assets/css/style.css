@@ -916,21 +916,7 @@ ul, ol { list-style: none; }
   transform: rotate(180deg);
 }
 
-.more-projects-panel {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
-  margin-top: 0;
-}
-
-.more-projects-panel.open {
-  opacity: 1;
-  margin-top: 2rem;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .more-projects-panel { transition: none; }
   .more-projects-arrow { transition: none; }
 }
 
