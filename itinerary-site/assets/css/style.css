@@ -722,7 +722,94 @@ ul, ol { list-style: none; }
 
 /* Template detail page */
 .template-hero {
-  padding: 5rem 1.25rem 3rem;
+  padding: clamp(3.5rem, 8vw, 6rem) 1.25rem 3.5rem;
+  overflow: hidden;
+}
+
+.hero-layout {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.hero-copy { max-width: 700px; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: var(--carbon-gray);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #1a9a62;
+  box-shadow: 0 0 0 4px rgba(26, 154, 98, 0.13);
+}
+
+.hero-note {
+  max-width: 570px;
+  margin-top: 1rem;
+  color: var(--carbon-gray);
+  font-size: 0.82rem;
+}
+
+.hero-preview {
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid var(--border);
+  border-radius: calc(var(--radius) + 6px);
+  background: var(--surface);
+  box-shadow: 10px 10px 0 var(--duplicate-yellow), 20px 20px 0 rgba(244, 156, 178, 0.52);
+}
+
+.preview-topline,
+.preview-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.preview-topline {
+  border-bottom: 1.5px dashed var(--border);
+  color: var(--carbon-gray);
+  text-transform: uppercase;
+}
+
+.hero-preview img {
+  display: block;
+  width: 100%;
+  max-height: 390px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.preview-caption {
+  border-top: 1.5px dashed var(--border);
+  color: var(--ink);
+}
+
+@media (min-width: 900px) {
+  .hero-layout { grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr); gap: 4rem; }
+  .hero-preview { transform: rotate(1.3deg); }
+}
+
+@media (max-width: 520px) {
+  .hero-preview { box-shadow: 6px 6px 0 var(--duplicate-yellow), 12px 12px 0 rgba(244, 156, 178, 0.52); }
+  .preview-caption { flex-direction: column; gap: 0.3rem; }
 }
 
 .template-hero .definition-lead {

@@ -113,11 +113,25 @@
 
   <section class="template-hero">
     <div class="container">
-      <h1 class="definition-lead">A digital travel brochure, assembled automatically from your short brief.</h1>
-      <p class="quick-answer">Fill in one form: destination, trip type, and guest preferences. Out comes a matched pair of brochures — an HTML page for guests to open on their phone, and a full-colour PDF — sent to the agent's email once ready. Output language is detected automatically from the brief.</p>
-      <div class="cta-row">
-        <a data-cta href="#try-it" class="btn btn-sobek">Try it live</a>
-        <a href="#in-action" class="btn btn-ghost">See it in action</a>
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> Live itinerary workflow</p>
+          <h1 class="definition-lead">From a short trip brief to a polished travel brochure.</h1>
+          <p class="quick-answer">Give the destination, trip type, and guest preferences. The workflow structures the route, checks travel logic, and delivers a phone-friendly HTML brochure plus a full-colour PDF to the agent's inbox.</p>
+          <div class="cta-row">
+            <a data-cta href="https://n8n.satryapudja.site/form/itinerary-brochure-intake-pdf2" class="btn btn-sobek">Try it live <span aria-hidden="true">→</span></a>
+            <a href="#in-action" class="btn btn-ghost">View sample output</a>
+          </div>
+          <p class="hero-note">No price claims, ticket fees, or booking prompts — only a decision-ready guest itinerary.</p>
+        </div>
+        <aside class="hero-preview" aria-label="Preview of an itinerary brochure">
+          <div class="preview-topline"><span>Sample output</span><span>PDF-ready</span></div>
+          <img src="assets/img/samples/full-day.png" alt="Preview of a generated full-day Ubud itinerary brochure" fetchpriority="high">
+          <div class="preview-caption">
+            <span>Ubud · full-day</span>
+            <span>route + practical notes</span>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
@@ -255,7 +269,7 @@
         <li>Doesn't add star ratings, review counts, scarcity claims, or a book-now button like an OTA product page</li>
         <li>Doesn't book anything — this is a guidance brochure, not a booking engine</li>
         <li>Never presents a photo as "this is the actual photo" of one specific spot — photography is always region-level, with attribution</li>
-        <li>The live demo currently runs through a Microsoft Dev Tunnel and may be unavailable when the local host is offline or the tunnel expires</li>
+        <li>It does not replace a travel agent's final operational confirmation for local access, weather, or venue changes</li>
       </ul>
     </div>
   </section>
@@ -271,7 +285,7 @@
         <span class="skill-chip">HTML renderer</span>
         <span class="skill-chip">PDF output</span>
         <span class="skill-chip">Automated QA</span>
-        <span class="skill-chip">Microsoft Dev Tunnel</span>
+        <span class="skill-chip">Browserless Chromium</span>
       </div>
       <p class="body-lg">The workflow is built as a staged n8n pipeline: deterministic input validation first, AI-assisted planning and copy second, then deterministic travel-time, photo, QA, and render gates before delivery.</p>
       <p class="body-lg">The public form is a safe demo surface. Credentials and internal workflow configuration stay on the n8n instance; the portfolio page only links to the form endpoint.</p>
@@ -334,9 +348,10 @@
   <section class="section-sm" id="try-it">
     <div class="container">
       <div class="email-capture">
-        <h3>Try the Itinerary Brochure Engine</h3>
-        <p>Submit a trip brief and see the intake flow that powers the brochure generator.</p>
-        <div class="cta-row" style="justify-content:center"><a data-cta href="#try-it" class="btn btn-sobek">Open the live form</a></div>
+        <p class="eyebrow">Ready when you are</p>
+        <h3>Build your next itinerary brief</h3>
+        <p>Open the live intake form, add the trip essentials, and choose where the finished brochure should be delivered.</p>
+        <div class="cta-row" style="justify-content:center"><a data-cta href="https://n8n.satryapudja.site/form/itinerary-brochure-intake-pdf2" class="btn btn-sobek">Open the live form <span aria-hidden="true">→</span></a></div>
       </div>
     </div>
   </section>
@@ -349,7 +364,7 @@
   </div>
 </footer>
 <script>
-  const DEMO_URL = 'https://7jg9qwgr-5678.asse.devtunnels.ms/form/itinerary-brochure-intake';
+  const DEMO_URL = 'https://n8n.satryapudja.site/form/itinerary-brochure-intake-pdf2';
   document.querySelectorAll('[data-cta]').forEach((link) => { link.href = DEMO_URL; link.target = '_blank'; link.rel = 'noopener'; });
 </script>
 </body>
