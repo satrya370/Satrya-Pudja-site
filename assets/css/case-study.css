@@ -1,0 +1,207 @@
+/* Additive styles: keep the shared portfolio typography, colors, and cards. */
+.vitruvian-project-card .note-card-meta,
+.vitruvian-project-card .project-actions {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.vitruvian-project-card .project-tags {
+  margin-bottom: 1rem;
+}
+
+.vitruvian-project-card .project-tags .skill-chip {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.vitruvian-case {
+  overflow-wrap: anywhere;
+}
+
+.vitruvian-case section[id],
+#vitruvian-experience {
+  scroll-margin-top: 7rem;
+}
+
+.vitruvian-case .case-lead {
+  max-width: 78ch;
+}
+
+.vitruvian-case .case-facts,
+.vitruvian-case .case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.vitruvian-case .case-facts {
+  padding: 1.5rem 0;
+  border-top: 2px dashed var(--border);
+  border-bottom: 2px dashed var(--border);
+}
+
+.vitruvian-case .case-facts dt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--carbon-gray);
+  margin-bottom: 0.5rem;
+}
+
+.vitruvian-case .case-facts dd {
+  line-height: 1.6;
+}
+
+.vitruvian-case .case-panel {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  min-width: 0;
+}
+
+.vitruvian-case .case-panel h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+}
+
+.vitruvian-case .case-panel p,
+.vitruvian-case .case-panel li {
+  line-height: 1.7;
+}
+
+.vitruvian-case .case-panel ul {
+  padding-left: 1.25rem;
+}
+
+.vitruvian-case .case-panel li + li {
+  margin-top: 0.5rem;
+}
+
+.vitruvian-case .case-note {
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--duplicate-yellow);
+  background: var(--surface);
+  line-height: 1.7;
+}
+
+.vitruvian-case .case-previews {
+  display: grid;
+  grid-template-columns: minmax(0, 2.5fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.vitruvian-case .case-previews img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.vitruvian-case figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.vitruvian-case .workflow-diagram {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  counter-reset: workflow;
+}
+
+.vitruvian-case .workflow-diagram li {
+  counter-increment: workflow;
+  position: relative;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--duplicate-yellow);
+  border-radius: var(--radius);
+  background: var(--surface);
+  line-height: 1.6;
+}
+
+.vitruvian-case .workflow-diagram li::before {
+  content: counter(workflow, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--carbon-gray);
+  margin-bottom: 0.5rem;
+}
+
+.vitruvian-case .workflow-diagram li:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -1.2rem;
+  top: 50%;
+  font-family: var(--font-mono);
+}
+
+.vitruvian-case .workflow-diagram li:nth-child(3n):not(:last-child)::after {
+  content: '↓';
+  right: 50%;
+  top: auto;
+  bottom: -1.5rem;
+}
+
+.vitruvian-case .workflow-diagram li:nth-child(4) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.vitruvian-case .workflow-diagram li:nth-child(5) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.vitruvian-case .workflow-diagram li:nth-child(6) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.vitruvian-case .workflow-diagram li:nth-child(4)::after,
+.vitruvian-case .workflow-diagram li:nth-child(5)::after {
+  content: '←';
+  left: -1.2rem;
+  right: auto;
+}
+
+@media (max-width: 767px) {
+  .vitruvian-case .case-grid,
+  .vitruvian-case .case-previews,
+  .vitruvian-case .workflow-diagram {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vitruvian-case .case-previews figure:last-child {
+    max-width: 320px;
+    justify-self: center;
+  }
+
+  .vitruvian-case .workflow-diagram li:not(:last-child)::after {
+    content: '↓';
+    left: auto;
+    right: 50%;
+    top: auto;
+    bottom: -1.5rem;
+  }
+
+  .vitruvian-case .workflow-diagram li:nth-child(4),
+  .vitruvian-case .workflow-diagram li:nth-child(5),
+  .vitruvian-case .workflow-diagram li:nth-child(6) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 479px) {
+  .vitruvian-case .case-facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
